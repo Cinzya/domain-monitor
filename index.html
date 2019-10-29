@@ -12,17 +12,6 @@
 
 <body>
     <div id="page">
-        <header>
-            <h1>Domain Monitor</h1>
-            <img src="img/logo.jpg"  alt="Logo"/> <!-- Logo Bild einfügen, evtl. auch <srcset="img/logo.jpg 1x, img/logo@2x.jpg 2x"> -->
-            <nav>
-                <ul>
-                    <li>Domain Checking</li>
-                    <li>Support</li>
-                    <li>Contact</li>
-                </ul>
-            </nav>
-        </header>
 
         <main>
             <section>
@@ -34,14 +23,58 @@
                     </div>
 
                 <div class="column-right">
+                        <h1>Domain Monitor</h1>
+                        <img src="img/logo.jpg"  alt="Logo"/> <!-- Logo Bild einfügen, evtl. auch <srcset="img/logo.jpg 1x, img/logo@2x.jpg 2x"> -->
                     <div class="domain-eingabe">
                         <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein"/>
-                        <input type="button" class="button" value="Prüfen" />
+                        <input type="button" class="button" value="Hinzufügen" />
                     </div>
 
-                    <div class="domain-liste"> <!-- Bin mir nicht sicher, ob das mit einer Liste gelöst werden kann, glaube nicht. Jemand andere Ideen? -->
-                        <input type="button" class="button" value="Liste sortieren nach" />
-                        <ul>
+                    <div class="domain-liste"> 
+                        <table>
+                            <tr>
+                                <th>Einstellungen</th>
+                                <th>Domain</th>
+                                <th>Status</th>
+                                <th>zuletzt geprüft</th>
+                                <th>hinzugefügt</th>
+                                <th>löschen</th>
+                            </tr>
+                            <tr>
+                                <td>Rädchen</td>
+                                <td>dummy-domain.de</td>
+                                <td>Verfügbar</td>
+                                <td>23.10.2019, 14:58 Uhr</td>
+                                <td>15.10.2019</td>
+                                <td>Mülltonne</td>
+                            </tr>
+                            <tr>
+                                <td>Rädchen</td>
+                                <td>dummydomain.com</td>
+                                <td>Besetzt</td>
+                                <td>23.10.2019, 14:58 Uhr</td>
+                                <td>15.10.2019</td>
+                                <td>Mülltonne</td>
+                            </tr>
+                            <tr>
+                                <td>Rädchen</td>
+                                <td>domaindummy.com</td>
+                                <td>Verfügbar</td>
+                                <td>23.10.2019, 14:58 Uhr</td>
+                                <td>15.10.2019</td>
+                                <td>Mülltonne</td>
+                            </tr>
+                            <tr>
+                                <td>Rädchen</td>
+                                <td>dummydomain.de</td>
+                                <td>Besetzt</td>
+                                <td>23.10.2019, 14:58 Uhr</td>
+                                <td>15.10.2019</td>
+                                <td>Mülltonne</td>
+                            </tr>
+                        </table>
+                        
+                        <!-- <ul>
                             <div class="domain">
                                 <li>dummy-domain.de</li>
                                 <p>verfügbar ✅ zuletzt überprüft am XX.XX.XXXX</p>
@@ -59,21 +92,22 @@
                                 <p>verfügbar ✅ </p>
                                 <input type="button" class="button" value="Prüfen" />
                             </div>
-                        </ul>
-                        <input type="button" class="button" value="Hinzufügen" />
-                        
+                        </ul> -->
+                                                
                     </div>
                 </div>
             </section>
         </main>
+        
         <footer>
             <ul>
-                <li>Contact</li>
+                <li>Datenschutz</li>
                 <li>Impressum</li>
             </ul>
         </footer>
 
     </div>
+
 </body>
 
 </html>
