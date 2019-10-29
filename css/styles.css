@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+}
+
+table {
+    border-collapse: collapse;
+    color: #fff;
+}
+
+/*Formatierung Ueberschriften und Unterpunkte*/
+table tr th {
+    text-align: left;
+    padding: 2% 2%;
+    background-color: #31373d;
+}
+
+table tr td {
+    padding: 0 2%;
+}
+
+/*Abwechselnde Farben der Domain Liste*/
+table tr:nth-child(odd) {
+    background-color: #5b687b;
+}
+
+table tr:nth-child(even) {
+    background-color:#738298;
+}
+
+/*Zahnrad und Muelleimer Formatierung*/
+table img {
+    max-width: 100%;
+    height: auto;
+    margin: 25%;
+    padding: 0;
+}
+
+

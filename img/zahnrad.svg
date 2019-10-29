@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+</style>
+<g id="Zahnrad">
+	<rect x="13" class="st0" width="4.1" height="4.9"/>
+	<rect x="4.1" y="3.7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -2.5322 6.1134)" class="st0" width="4.1" height="4.9"/>
+	
+		<rect x="0.4" y="12.6" transform="matrix(4.486906e-11 -1 1 4.486906e-11 -12.5676 17.4324)" class="st0" width="4.1" height="4.9"/>
+	<rect x="3.7" y="21.9" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -15.0998 11.319)" class="st0" width="4.9" height="4.1"/>
+	<rect x="13" y="25.1" transform="matrix(-1 -9.018576e-11 9.018576e-11 -1 30 55.1351)" class="st0" width="4.1" height="4.9"/>
+	<rect x="21.9" y="21.5" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -9.8942 23.8863)" class="st0" width="4.1" height="4.9"/>
+	
+		<rect x="25.5" y="12.6" transform="matrix(-1.346054e-10 1 -1 -1.346054e-10 42.5676 -12.5676)" class="st0" width="4.1" height="4.9"/>
+	<rect x="21.5" y="4.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 2.6733 18.6808)" class="st0" width="4.9" height="4.1"/>
+	<path class="st0" d="M15,4.1C9,4.1,4.1,9,4.1,15C4.1,21,9,25.9,15,25.9S25.9,21,25.9,15C25.9,9,21,4.1,15,4.1z M15,21.9
+		c-3.8,0-6.9-3.1-6.9-6.9s3.1-6.9,6.9-6.9s6.9,3.1,6.9,6.9S18.8,21.9,15,21.9z"/>
+</g>
+</svg>
