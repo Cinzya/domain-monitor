@@ -1,21 +1,22 @@
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
+/*Schriften einbinden Vorlage
+Schriften müssen noch eingefügt werden*/
+/*@font-face {
+    font-family: "Didact";
+    src: url(/domain-monitor/fonts/didactttf.ttf) format('truetype');
+    src: url(/domain-monitor/fonts/didactwoff.woff) format('woff');
+    src: url(/domain-monitor/fonts/didactgothic.otf) format('opentype');
+*/
+
+/*Tabelle allgemein*/
 table {
     border-collapse: collapse;
     color: #fff;
-}
-
-/*Formatierung Ueberschriften und Unterpunkte*/
-table tr th {
-    text-align: left;
-    padding: 2% 2%;
-    background-color: #31373d;
-}
-
-table tr td {
-    padding: 0 2%;
 }
 
 /*Abwechselnde Farben der Domain Liste*/
@@ -27,12 +28,32 @@ table tr:nth-child(even) {
     background-color:#738298;
 }
 
+/*Formatierung Ueberschriften und Unterpunkte*/
+table td, table th {
+    padding: 1.5% 4%;
+    text-align: left;
+}
+
+table tr th {
+    background-color: #31373d;
+}
+
+/*Statusanzeige: habe ich erstmal nur auf "Verfügbar" gestellt
+Die Farbänderung machen wir wahrscheinlich mit Javascript
+grün: #1d994f;
+rot: #e24b4b */
+td span {
+    background-color: #1d994f;
+    padding: 8%;
+    border-radius: 0.2em;
+    -webkit-border-radius: 0.2em;
+    -moz-border-radius: 0.2em;
+}
+
 /*Zahnrad und Muelleimer Formatierung*/
 table img {
-    max-width: 100%;
+    max-width: 50%;
     height: auto;
-    margin: 25%;
-    padding: 0;
 }
 
 
