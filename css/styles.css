@@ -23,10 +23,6 @@ body{
     background-color:  #31373d;
 }
 
-.domain-liste {
-    padding: 10% 5% 4% 0%;
-}
-
 table {
     border-collapse: collapse;
     min-width: 100%;
@@ -45,6 +41,7 @@ table tr:nth-child(even) {
 /*Formatierung Ueberschriften und Unterpunkte*/
 table td, table th {
     padding: 1.5% 4%;
+    margin: 2%;
     text-align: left;
 }
 
