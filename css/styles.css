@@ -2,16 +2,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: myriad-pro, sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
-
-/*Schriften einbinden Vorlage
-Schriften müssen noch eingefügt werden*/
-/*@font-face {
-    font-family: "Didact";
-    src: url(/domain-monitor/fonts/didactttf.ttf) format('truetype');
-    src: url(/domain-monitor/fonts/didactwoff.woff) format('woff');
-    src: url(/domain-monitor/fonts/didactgothic.otf) format('opentype');
-*/
 
 /*Tabelle allgemein*/
 .clear{
@@ -23,10 +17,17 @@ body{
     background-color:  #31373d;
 }
 
+.domain-liste {
+    padding: 4% 0% 4% 0%;
+    width: 100%;
+    height: auto;
+}
+
 table {
     border-collapse: collapse;
     min-width: 100%;
     color: #fff;
+    font-size: 1em;
 }
 
 /*Abwechselnde Farben der Domain Liste*/
@@ -40,9 +41,9 @@ table tr:nth-child(even) {
 
 /*Formatierung Ueberschriften und Unterpunkte*/
 table td, table th {
-    padding: 1.5% 4%;
-    margin: 2%;
-    text-align: left;
+    padding: 2% 1.5%;
+    text-align: center;
+    empty-cells:show;
 }
 
 /*Statusanzeige: habe ich erstmal nur auf "Verfügbar" gestellt
@@ -61,6 +62,31 @@ td span {
 table img {
     max-width: 50%;
     height: auto;
+}
+
+/**Damit die Symbole größer werden**/
+.symbole {
+    width: 10%;
+}
+
+/*Responsive Tabelle*/
+@media all and (max-width: 1100px) {
+    .table-scrollable {
+        width: 100%;
+        overflow-y: auto;
+        margin: 0 0 1em;
+      }
+      
+      .table-scrollable::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 14px;
+      }
+      
+      .table-scrollable::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        border: 3px solid #fff;
+        background-color: rgba(0, 0, 0, .3);
+      }
 }
 
 /*Anderer Teil*/
@@ -88,13 +114,13 @@ section{
 
 /*rechte Außenbox*/
 .column-right{ 
-    width: 70%;
+    width: 80%;
     order: 2;
    background-color:#31373d; 
    display: flex;  
    flex-direction: column;
    flex-wrap: wrap;
-   padding: 10%;
+   padding: 5%;
    align-content: space-evenly;/**?????**/
    align-items: flex-start;
 }
@@ -103,6 +129,8 @@ h1{
     color: white;
     font-size: 2.5em;
     margin: 0;
+    text-transform:uppercase;
+    letter-spacing: 0.1em;
 }
 
 /**Überschrift und Logo sollen nebeneinander**/
@@ -164,7 +192,12 @@ footer ul li{
     
 }
 
-@media all and (max-width: 990px){
+h2{
+    margin-bottom: 10%;
+    font-size: 1.8em;
+}
+
+@media all and (max-width: 1100px){
     section{
         width: 100%;
         display: flex;
@@ -175,7 +208,7 @@ footer ul li{
     .column-right{ 
        width: 100%;
        background-color:#31373d; 
-       padding: 10%;
+       padding: 5%;
     }
 
     .column-left{
