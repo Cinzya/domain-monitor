@@ -140,6 +140,12 @@ h1{
     flex-direction: row;
 }
 
+.logo img {
+    max-width: 50%;
+    height: auto;
+    margin-left: 10%;
+}
+
 /**Domaineingabefeld **/
 .domain-eingabe{
     padding: 10% 5% 4% 0%;
