@@ -46,8 +46,7 @@ table td, table th {
     empty-cells:show;
 }
 
-/*Statusanzeige: habe ich erstmal nur auf "Verfügbar" gestellt
-Die Farbänderung machen wir wahrscheinlich mit Javascript
+/*Statusanzeige
 grün: #1d994f;
 rot: #e24b4b */
 td span {
@@ -56,6 +55,11 @@ td span {
     border-radius: 0.2em;
     -webkit-border-radius: 0.2em;
     -moz-border-radius: 0.2em;
+}
+td .red {
+    background-color: #e24b4b;
+    padding: 8% 19%;
+    
 }
 
 /*Zahnrad und Muelleimer Formatierung*/
