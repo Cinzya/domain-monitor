@@ -128,6 +128,7 @@ section{
   justify-content: flex-start;
   flex-direction: column;
   padding: 10% 5% 5% 5%;
+  text-align: left;
 }
 
 /*rechte Außenbox*/
@@ -141,6 +142,7 @@ section{
   padding: 5%;
   align-content: space-evenly;/**?????**/
   align-items: flex-start;
+  text-align: left;
 }
 
 h1{
@@ -153,7 +155,7 @@ h1{
 
 /**Überschrift und Logo sollen nebeneinander**/
 .column-right .logo{
-  display:flex;
+  display: flex;
   flex: nowrap;
   flex-direction: row;
 }
@@ -238,6 +240,5 @@ h2{
   .column-left{
     width: 100%;
     padding: 10% 30% 10% 10%;
-
   }
 }
