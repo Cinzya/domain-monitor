@@ -12,6 +12,6 @@ class Navigation extends Component {
             </footer>
         );
     };
-};
+}
 
 export default Navigation;
