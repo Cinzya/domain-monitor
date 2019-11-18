@@ -20,5 +20,3 @@ const getData = () => {
             console.log(responseData);
         });
 };
-
-getData();
