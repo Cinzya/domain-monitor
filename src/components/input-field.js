@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-const getData = () => {
-    fetch("https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + apiKey + "&domainName=" + domain).then(response => {
+const getData = (domain) => {
+    fetch("https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=at_XtU8CpRcPmD7AX6RWswtOOK0voVgH&domainName=" + domain).then(response => {
         return response.json();
     })
         .then(responseData => {
@@ -15,7 +15,6 @@ class InputField extends Component {
         return(
             <div className="domain-eingabe">
                 <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein"/>
-               /* <input type="button" className="button" value="Hinzufügen"/>*/
                 <button onClick={getData} className="button">Hinzufügen</button>
             </div>
         );
