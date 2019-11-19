@@ -1,32 +1,39 @@
 import React, { Component } from 'react';
-import { TextInput } from 'react-native-paper';
 
 class InputField extends Component {
     constructor(props) {
         super(props);
-        state = {
-            domain: ''
+        this.state = {
+            apiKey: "at_XtU8CpRcPmD7AX6RWswtOOK0voVgH",
+            domainName: null,
+            }
         };
-    }
 
-    handleDomain = e => this.setState({ domain: e.target.value })
+
     getData() {
-        fetch("https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=at_XtU8CpRcPmD7AX6RWswtOOK0voVgH&domainName=" + {domain}.then(response => {
+        this.setState({
+            domainName: this.element.value
+        });
+        console.log(this.state);
+        fetch(`https://domain-availability-api.whoisxmlapi.com/api/v1?`, {
+            method: "GET",
+            body: JSON.stringify(this.state)
+        })
+        .then(response => {
             return response.json();
         })
             .then(responseData => {
                 console.log(responseData);
             });
-    };
+    }
 
     render() {
-        const { domain } = this.state;
         return (
-            <div className="domain-eingabe">
+            <form className="domain-eingabe" onSubmit={this.getData} >
                 <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein"
-                       value={this.state.text} onChangeText={text => this.setState({ text })}/>
-                <button onClick={this.getData} className="button">Hinzufügen</button>
-            </div>
+                ref={el => this.element = el}/>
+                <input type="submit" className="button" value="Hinzufügen"/>
+            </form>
         );
     };
 
