@@ -6,25 +6,26 @@ class InputField extends Component {
         this.state = {
             apiKey: "at_XtU8CpRcPmD7AX6RWswtOOK0voVgH",
             domainName: null,
-            }
+            };
+        this.getData = this.getData.bind(this)
         };
 
 
-    getData() {
+    getData(event) {
+		event.preventDefault();
         this.setState({
             domainName: this.element.value
         });
         console.log(this.state);
-        fetch(`https://domain-availability-api.whoisxmlapi.com/api/v1?`, {
-            method: "GET",
-            body: JSON.stringify(this.state)
+        fetch( "https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.state.domainName, {
+            method: 'GET'
         })
         .then(response => {
             return response.json();
         })
-            .then(responseData => {
-                console.log(responseData);
-            });
+        .then(responseData => {
+            console.log(responseData);
+        });
     }
 
     render() {
@@ -36,7 +37,7 @@ class InputField extends Component {
             </form>
         );
     };
-
 }
+
 export default InputField;
 
