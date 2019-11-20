@@ -7,22 +7,30 @@ class InputField extends Component {
             apiKey: "at_XtU8CpRcPmD7AX6RWswtOOK0voVgH",
             domainName: null,
             };
-        this.getData = this.getData.bind(this)
+        this.changeDomainHandler = this.changeDomainHandler.bind(this)
+        this.onSubmitHandler = this.onSubmitHandler.bind(this)
         };
 
-
-    getData(event) {
-		event.preventDefault();
+    changeDomainHandler(event) {
+        // domainName wird der Wert des Eingabefelds zugewiesen
         this.setState({
-            domainName: this.element.value
+            domainName: event.target.value
         });
+    }
+
+    onSubmitHandler(event) {
+		event.preventDefault();
+        // Ausgabe in der Konsole der aktuellen Werte
         console.log(this.state);
+
+        // HTTP Anfrage an API
         fetch( "https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.state.domainName, {
             method: 'GET'
         })
         .then(response => {
             return response.json();
         })
+            // Ausgabe in der Konsole der API Response
         .then(responseData => {
             console.log(responseData);
         });
@@ -30,9 +38,8 @@ class InputField extends Component {
 
     render() {
         return (
-            <form className="domain-eingabe" onSubmit={this.getData} >
-                <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein"
-                ref={el => this.element = el}/>
+            <form className="domain-eingabe" onSubmit={this.onSubmitHandler} >
+                <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein" onChange={this.changeDomainHandler}/>
                 <input type="submit" className="button" value="Hinzufügen"/>
             </form>
         );
