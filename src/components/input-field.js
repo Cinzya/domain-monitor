@@ -5,10 +5,10 @@ class InputField extends Component {
         super(props);
         this.state = {
             apiKey: "at_XtU8CpRcPmD7AX6RWswtOOK0voVgH",
-            domainName: null,
+            domainName: ""
             };
-        this.changeDomainHandler = this.changeDomainHandler.bind(this)
-        this.onSubmitHandler = this.onSubmitHandler.bind(this)
+        this.changeDomainHandler = this.changeDomainHandler.bind(this);
+        this.onSubmitHandler = this.onSubmitHandler.bind(this);
         };
 
     changeDomainHandler(event) {
@@ -34,12 +34,19 @@ class InputField extends Component {
         .then(responseData => {
             console.log(responseData);
         });
+
+        // Eingabefeld wird geleert
+        this.setState({
+            domainName: ""
+        })
     }
 
     render() {
         return (
-            <form className="domain-eingabe" onSubmit={this.onSubmitHandler} >
-                <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein" onChange={this.changeDomainHandler}/>
+            <form className="domain-eingabe"
+                  onSubmit={this.onSubmitHandler} >
+                <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein"
+                       value={this.state.domainName} onChange={this.changeDomainHandler}/>
                 <input type="submit" className="button" value="Hinzufügen"/>
             </form>
         );
