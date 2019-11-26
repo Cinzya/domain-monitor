@@ -6,6 +6,34 @@ import muelleimer from '../img/muelleimer.svg';
 import InputField from "./input-field";
 
 class List extends Component {
+    constructor (props){
+        super(props)
+        this.state = {
+            domains: [{
+                name: "",
+                status: "",
+                geprueft: "",
+                hinzugefuegt:"",
+            }]
+        }
+        this.renderTableData = this.renderTableData.bind(this);
+    }
+    renderTableData(){
+        return this.state.domains.map((domain, index) => {
+            const {name ,status, geprueft, hinzugefuegt} = domain
+            return (
+                <tr>
+                <td><img src={zahnrad} /></td>
+                <td>{name}</td>
+                <td><span>{status}</span></td>
+                <td>{geprueft}</td>
+                <td>{hinzugefuegt}</td>
+                <td><img src={muelleimer} /></td>
+            </tr>
+
+            )
+        })
+    }
     render() {
         return(
             <div className="column-right">
@@ -20,6 +48,7 @@ class List extends Component {
                 <div className="domain-liste">
                     <div className="table-scrollable">
                         <table>
+                            <tbody>
                             <tr>
                                 <th className="symbole">Einstellungen</th>
                                 <th>Domain</th>
@@ -28,38 +57,8 @@ class List extends Component {
                                 <th>hinzugefügt</th>
                                 <th className="symbole">Löschen</th>
                             </tr>
-                            <tr>
-                                <td><img src={zahnrad} /></td>
-                                <td>dummy-domain.de</td>
-                                <td><span>Verfügbar</span></td>
-                                <td>23.10.2019, 14:58 Uhr</td>
-                                <td>15.10.2019</td>
-                                <td><img src={muelleimer} /></td>
-                            </tr>
-                            <tr>
-                                <td><img src={zahnrad} /></td>
-                                <td>dummydomain.com</td>
-                                <td><span className="red">Belegt</span></td>
-                                <td>23.10.2019, 14:58 Uhr</td>
-                                <td>15.10.2019</td>
-                                <td><img src={muelleimer} /></td>
-                            </tr>
-                            <tr>
-                                <td><img src={zahnrad} /></td>
-                                <td>domaindummy.com</td>
-                                <td><span>Verfügbar</span></td>
-                                <td>23.10.2019, 14:58 Uhr</td>
-                                <td>15.10.2019</td>
-                                <td><img src={muelleimer} /></td>
-                            </tr>
-                            <tr>
-                                <td><img src={zahnrad} /></td>
-                                <td>dummydomain.de</td>
-                                <td><span className="red">Belegt</span></td>
-                                <td>23.10.2019, 14:58 Uhr</td>
-                                <td>15.10.2019</td>
-                                <td><img src={muelleimer} /></td>
-                            </tr>
+                                {this.renderTableData()}
+                            </tbody>
                         </table>
                     </div>
                 </div>
