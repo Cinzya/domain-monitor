@@ -3,10 +3,6 @@ import React, { Component } from 'react';
 class InputField extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            apiKey: "at_XtU8CpRcPmD7AX6RWswtOOK0voVgH",
-            domainName: ""
-            };
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         };
@@ -21,11 +17,15 @@ class InputField extends Component {
     onSubmitHandler(event) {
 		event.preventDefault();
         // Ausgabe in der Konsole der aktuellen Werte
-        console.log(this.state);
+        console.log(props);
 
         // HTTP Anfrage an API
-        fetch( "https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.state.domainName, {
-            method: 'GET'
+        fetch( "https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + props.apiKey + "&domainName=" + props.domainName, {
+            method: 'GET',
+            body: JSON.stringify({
+                domainName: props.name,
+                domainAvailability: props.status,
+            })
         })
         .then(response => {
             return response.json();
