@@ -4,7 +4,7 @@ import zahnrad from '../img/zahnrad.svg';
 import muelleimer from '../img/muelleimer.svg';
 
 import InputField from "./input-field";
-
+// blablabla
 class List extends Component {
     constructor (props){
         super(props)
