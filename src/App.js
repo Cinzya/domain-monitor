@@ -3,6 +3,7 @@ import './App.css';
 import Navigation from './components/navigation';
 import List from './components/list';
 import Intro from './components/intro';
+import InputField from './components/input-field';
 
 class App extends Component{
   render() {
