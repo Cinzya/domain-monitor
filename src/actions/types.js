@@ -1,0 +1,1 @@
+export const DOMAIN_INPUT = 'DOMAIN_INPUT';

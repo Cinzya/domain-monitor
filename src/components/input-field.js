@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { handleChange } from '../actions/domainInputActions';
+
 
 class InputField extends Component {
     constructor(props) {
@@ -7,6 +10,12 @@ class InputField extends Component {
             apiKey: "at_XtU8CpRcPmD7AX6RWswtOOK0voVgH",
             domainName: ""
             };
+
+    // Aus Redux Tutorial
+    handleChange = e => {
+        this.props.handleChange(e);
+    };
+
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         };
@@ -40,18 +49,38 @@ class InputField extends Component {
             domainName: ""
         })
     }
+    
 
     render() {
         return (
-            <form className="domain-eingabe"
-                  onSubmit={this.onSubmitHandler} >
-                <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein"
-                       value={this.state.domainName} onChange={this.changeDomainHandler}/>
-                <input type="submit" className="button" value="Hinzufügen"/>
+            <form className="domain-eingabe">
+                onSubmit={this.onSubmitHandler} 
+                <input id="eingabefeld"
+                    type="text"
+                    placeholder="Geben Sie hier Ihre Wunschdomain ein"
+                    value={this.props.domainName}
+                    onChange={this.changeDomainHandler}
+                    onChange={handleChange}
+                />
+
+            <input className="button"
+                type="submit"
+                value="Hinzufügen"
+            />
             </form>
+           
+                  
+                //<input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein"
+                       //value={this.state.domainName} onChange={this.changeDomainHandler}/>
+               // <input type="submit" className="button" value="Hinzufügen"/>
+            
         );
     };
 }
 
-export default InputField;
+const mapStateToProps = state => ({
+    domainInput: state.domainInput.value
+});
+
+export default connect(mapStateToProps, { handleChange })(InputField);
 
