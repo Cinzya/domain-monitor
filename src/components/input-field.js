@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {addDomain} from '../actions';
+import {addStatus} from '../actions';
 
 class InputField extends Component {
     constructor(props) {
@@ -10,6 +13,7 @@ class InputField extends Component {
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         };
+  
 
     changeDomainHandler(event) {
         // domainName wird der Wert des Eingabefelds zugewiesen
@@ -30,7 +34,7 @@ class InputField extends Component {
         .then(response => {
             return response.json();
         })
-            // Ausgabe in der Konsole der API Response
+        // Ausgabe in der Konsole der API Response
         .then(responseData => {
             console.log(responseData);
         });
@@ -41,13 +45,25 @@ class InputField extends Component {
         })
     }
 
+
+
     render() {
+        
+
         return (
             <form className="domain-eingabe"
                   onSubmit={this.onSubmitHandler} >
-                <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein"
-                       value={this.state.domainName} onChange={this.changeDomainHandler}/>
-                <input type="submit" className="button" value="Hinzufügen"/>
+                <input  type="text" 
+                        id="eingabefeld" 
+                        placeholder="Geben Sie hier Ihre Wunschdomain ein"
+                        value={this.state.domainName} 
+                        onChange={this.changeDomainHandler}/>
+                <input  type="submit" 
+                        className="button" 
+                        value="Prüfen"
+                />
+                <button>onClick={() => dispatch(addDomain())}
+                        onClick={() => dispatch(addStatus())}</button>
             </form>
         );
     };

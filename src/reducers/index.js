@@ -1,7 +1,13 @@
-import {combineReducers} from "redux";
+import addDomainReducer from './adddomain';
+import addStatusReducer from './addstatus';
+import {combineReducers} from 'redux';
 
-const rootReducer = combineReducers({
+const allReducers = combineReducers({
+    addDomain: addDomainReducer,
+    addStatus: addStatusReducer
+})
 
-});
+export default allReducers;
 
-export default rootReducer
+// Mit "combineReducers" können mehrere Reducers miteinander 
+// verknüpft werden, ohne Kompliziertes einzelnes Einbinden

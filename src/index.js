@@ -3,14 +3,20 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import {createStore} from 'redux';
+import allReducer from './reducers';
+import {Provider} from 'react-redux';
 
-import { Provider } from 'react-redux';
-import Store from './store.js';
 
-const StoreInstrance = Store();
+//Reducer wird in Store eingebunden, zusätzlich wird Redux als CHROME DEV TOOL 
+//Extention eingebonden von https://github.com/zalmoxisus/redux-devtools-extension
+const store = createStore(
+    allReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
-    <Provider store ={StoreInstrance}>
+    <Provider store ={store}>
     <App />
     </Provider>,
         document.getElementById('root'));
