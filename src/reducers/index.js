@@ -1,4 +1,4 @@
-import {combineReducers} from "redux";
+import { combineReducers } from "redux";
 import domainInputReducer from './domainInputReducer';
 
 //const rootReducer = combineReducers({

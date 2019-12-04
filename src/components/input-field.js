@@ -11,7 +11,7 @@ class InputField extends Component {
             domainName: ""
             };
 
-    // Aus Redux Tutorial
+    // Aus Redux Tutorial <- Link?
     handleChange = e => {
         this.props.handleChange(e);
     };
