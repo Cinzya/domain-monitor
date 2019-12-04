@@ -10,13 +10,7 @@ class Content extends Component{
         this.state = {
             apiKey: "at_XtU8CpRcPmD7AX6RWswtOOK0voVgH",
             domainName: "",
-            domains: [{
-                id: "",
-                name: "",
-                status: "",
-                geprueft: "",
-                hinzugefuegt:"",
-            }]
+            domains: []
         }
         this.renderTableData = this.renderTableData.bind(this);
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
@@ -32,10 +26,11 @@ class Content extends Component{
 
     addDomain(toAdd){
         toAdd.id = Math.random();
-        let domains = [...this.state.domains, toAdd];
+        let domains = [toAdd];
         this.setState({
             domains: domains
-        })
+        });
+        console.log(this.state.domains)
     }
 
     onSubmitHandler(event) {
@@ -46,12 +41,6 @@ class Content extends Component{
         // HTTP Anfrage an API
         fetch( "https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.state.domainName, {
             method: 'GET',
-            // https://www.freecodecamp.org/forum/t/parsing-json-from-api-response/275420
-            //this.setState({DomainInfo}),
-           // const {DomainInfo: {domainAvailability: ''}} = this.state,
-           // console.log(domainAvailability),
-            //this.setState({ DomainInfo: JSON.parse(DomainInfo) }) {domainName: ''}
-                       
         })
         .then(response => {
             return response.json();
@@ -60,6 +49,11 @@ class Content extends Component{
         .then(responseData => {
             console.log(responseData);
             this.addDomain(responseData);
+            // https://www.freecodecamp.org/forum/t/parsing-json-from-api-response/275420
+            //this.setState({DomainInfo}),
+            // const {DomainInfo: {domainAvailability: ''}} = this.state,
+            // console.log(domainAvailability),
+            //this.setState({ DomainInfo: JSON.parse(DomainInfo) }) {domainName: ''}
         });
         
      
@@ -75,15 +69,14 @@ class Content extends Component{
     }
 
     renderTableData(){
-        return this.state.domains.map((domain, index) => {
-            const {name ,status, geprueft, hinzugefuegt} = domain
+       return this.state.domains.map(domain => {
             return (
-                <tr>
+                <tr key={domain.id}>
                 <td><img src={zahnrad} /></td>
-                <td>{name}</td>
-                <td><span>{status}</span></td>
-                <td>{geprueft}</td>
-                <td>{hinzugefuegt}</td>
+                <td>{domain.DomainInfo.domainName}</td>
+                <td><span>{domain.DomainInfo.domainAvailability}</span></td>
+                <td></td>
+                <td></td>
                 <td><img src={muelleimer} /></td>
             </tr>
 
