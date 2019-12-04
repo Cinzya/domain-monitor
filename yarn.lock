@@ -6221,6 +6221,11 @@ minizlib@^1.2.1:
   dependencies:
     minipass "^2.9.0"
 
+missing@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/missing/-/missing-0.0.1.tgz#2b8b2779e68ca8969a204cba828233bfc208d381"
+  integrity sha1-K4sneeaMqJaaIEy6goIzv8II04E=
+
 mississippi@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/mississippi/-/mississippi-3.0.0.tgz#ea0a3291f97e0b5e8776b363d5f0a12d94c67022"

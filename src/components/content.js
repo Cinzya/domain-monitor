@@ -30,6 +30,14 @@ class Content extends Component{
         });
     }
 
+    addDomain(toAdd){
+        toAdd.id = Math.random();
+        let domains = [...this.state.domains, toAdd];
+        this.setState({
+            domains: domains
+        })
+    }
+
     onSubmitHandler(event) {
 		event.preventDefault();
         // Ausgabe in der Konsole der aktuellen Werte
@@ -50,7 +58,8 @@ class Content extends Component{
         })
             // Ausgabe in der Konsole der API Response
         .then(responseData => {
-            console.log(responseData); //this.state.addDomain(responseData);
+            console.log(responseData);
+            this.addDomain(responseData);
         });
         
      
@@ -82,13 +91,6 @@ class Content extends Component{
         })
     }
 
-    addDomain(toAdd){
-        toAdd.id = Math.random();
-        let domains = [...this.state.domains, toAdd];
-        this.setState({
-            domains: domains
-        })
-    }
 
     render() {
       return (
