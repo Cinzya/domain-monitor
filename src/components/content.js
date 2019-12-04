@@ -87,45 +87,41 @@ class Content extends Component{
 
     render() {
       return (
-          <div className="Content">   
-                    <div className="column-right">
-                        <div className="logo">
-                            <h1><span>Domain</span> <span>Monitor</span></h1>
-                            <img src={logo}
-                                alt="Logo"/>
+            <div className="column-right">
+                <div className="logo">
+                    <h1><span>Domain</span> <span>Monitor</span></h1>
+                    <img src={logo}
+                        alt="Logo"/>
+                </div>
+                {/* // InputField Component */}
+                    <form className="domain-eingabe"
+                      //hier muss noch iwie {this.additem} hin
+                    onSubmit={(event)=> {this.onSubmitHandler(event)}} >
+                    <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein"
+                        value={this.state.domainName} onChange={this.changeDomainHandler}/>
+                    <input type="submit" className="button" value="Hinzufügen"/>
+                </form> {/* /* <List entries={this.state.domains}/>
+        div Elemente um form und um alles, damit es klappt*/}
+
+                    {/*  List Component  */}
+                    <div className="domain-liste">
+                        <div className="table-scrollable">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <th className="symbole">Einstellungen</th>
+                                    <th>Domain</th>
+                                    <th>Status</th>
+                                    <th>zuletzt geprüft</th>
+                                    <th>hinzugefügt</th>
+                                    <th className="symbole">Löschen</th>
+                                </tr>
+                                    {this.renderTableData()}
+                                </tbody>
+                            </table>
                         </div>
-                        {/* // InputField Component */}
-                            <form className="domain-eingabe" 
-                              //hier muss noch iwie {this.additem} hin
-                            onSubmit={(event)=> {this.onSubmitHandler(event)}} > 
-                            <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein"
-                                value={this.state.domainName} onChange={this.changeDomainHandler}/>
-                            <input type="submit" className="button" value="Hinzufügen"/>
-                        </form> {/* /* <List entries={this.state.domains}/> 
-                div Elemente um form und um alles, damit es klappt*/}
-                            
-                            {/*  List Component  */}
-                            <div className="domain-liste">
-                                <div className="table-scrollable">
-                                    <table>
-                                        <tbody>
-                                        <tr>
-                                            <th className="symbole">Einstellungen</th>
-                                            <th>Domain</th>
-                                            <th>Status</th>
-                                            <th>zuletzt geprüft</th>
-                                            <th>hinzugefügt</th>
-                                            <th className="symbole">Löschen</th>
-                                        </tr>
-                                            {this.renderTableData()}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>  
                     </div>
             </div>
-         
-         
       );
     }
   }
