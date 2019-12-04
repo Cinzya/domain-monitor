@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import logo from '../img/logo.svg';
 import zahnrad from '../img/zahnrad.svg';
 import muelleimer from '../img/muelleimer.svg';
 
-import InputField from "./input-field";
-// blablabla
 class List extends Component {
     constructor (props){
         super(props)
@@ -38,7 +35,7 @@ class List extends Component {
         })
     }
 
-    addDomain = (toAdd) => {
+    addDomain(toAdd){
         toAdd.id = Math.random();
         let toAdds = [...this.state.toAdds, toAdd];
         this.setState({
@@ -48,16 +45,7 @@ class List extends Component {
 
     render() {
         return(
-            <div className="column-right">
-                <div className="logo">
-                    <h1><span>Domain</span> <span>Monitor</span></h1>
-                    <img src={logo}
-                         alt="Logo"/>
-                </div>
-
-                <InputField addTodo = {this.addTodo}/>
-
-                <div className="domain-liste">
+            <div className="domain-liste">
                     <div className="table-scrollable">
                         <table>
                             <tbody>
@@ -74,7 +62,6 @@ class List extends Component {
                         </table>
                     </div>
                 </div>
-            </div>
         )
     }
 }
