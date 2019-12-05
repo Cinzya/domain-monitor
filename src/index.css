@@ -70,7 +70,7 @@ td span {
   -webkit-border-radius: 0.2em;
   -moz-border-radius: 0.2em;
 }
-td .red {
+td .UNAVAILABLE {
   background-color: #e24b4b;
   padding: 8% 19%;
 
@@ -82,7 +82,7 @@ table img {
   height: auto;
 }
 
-/**Damit die Symbole größer werden**/
+/*Damit die Symbole größer werden*/
 .symbole {
   width: 10%;
 }

@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import logo from '../img/logo.svg';
 
-import { Row } from '../components/row';
-
+import { Row } from './row';
+import { InputField } from './input-field';
 
 class Content extends Component{
     constructor (props){
-        super(props)
+        super(props);
         this.state = {
             apiKey: "at_XtU8CpRcPmD7AX6RWswtOOK0voVgH",
             domainName: "",
             domains: []
-        }
+        };
         this.renderTableData = this.renderTableData.bind(this);
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
@@ -69,9 +69,9 @@ class Content extends Component{
 
         // ?
         this.domainName = this.state;
-        const newDomain = '';
 
         // Eingabefeld wird geleert
+        const newDomain = '';
         this.setState({
             domainName: newDomain
         });
@@ -94,17 +94,9 @@ class Content extends Component{
                     <img src={logo}
                         alt="Logo"/>
                 </div>
-                {/* // InputField Component */}
-                    <form className="domain-eingabe"
-                      //hier muss noch iwie {this.additem} hin
-                    onSubmit={(event)=> {this.onSubmitHandler(event)}} >
-                    <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein"
-                        value={this.state.domainName} onChange={this.changeDomainHandler}/>
-                    <input type="submit" className="button" value="Hinzufügen"/>
-                </form> {/* /* <List entries={this.state.domains}/>
-        div Elemente um form und um alles, damit es klappt*/}
 
-                    {/*  List Component  */}
+                <InputField domainName={this.state.domainName} changeDomain={this.changeDomainHandler} Submit={this.onSubmitHandler}/>
+
                     <div className="domain-liste">
                         <div className="table-scrollable">
                             <table>
