@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navigation from './components/navigation';
-import Content from './components/content';
+import List from './components/list';
 import Intro from './components/intro';
 
 class App extends Component{
@@ -11,7 +11,7 @@ class App extends Component{
             <main>
                 <section>
                     <Intro />
-                    <Content />
+                    <List />
                 </section>
             </main>
             <Navigation />
