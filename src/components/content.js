@@ -24,8 +24,20 @@ class Content extends Component{
         });
     }
 
-    addDomain(toAdd){
+    addTime() {
+        let today = new Date();
+        let date = today.getFullYear()+'
+        let time = today.getHours()+ ":
+        let dateTime = date+' '+time;
+        return dateTime
+    };
+
+    addData(toAdd){
+        // ID ins State geschrieben
         toAdd.id = Math.random();
+        // aktuelle Zeit wird zugewiesen
+        toAdd.checked = this.addTime();
+        // Daten werden ins State übertragen
         let domains = [toAdd];
         this.setState({
             domains: domains
@@ -48,15 +60,13 @@ class Content extends Component{
             // Ausgabe in der Konsole der API Response
         .then(responseData => {
             console.log(responseData);
-            this.addDomain(responseData);
+            this.addData(responseData);
             // https://www.freecodecamp.org/forum/t/parsing-json-from-api-response/275420
             //this.setState({DomainInfo}),
             // const {DomainInfo: {domainAvailability: ''}} = this.state,
             // console.log(domainAvailability),
             //this.setState({ DomainInfo: JSON.parse(DomainInfo) }) {domainName: ''}
         });
-        
-     
 
         this.domainName = this.state;
         const newDomain = '';
@@ -64,8 +74,7 @@ class Content extends Component{
         // Eingabefeld wird geleert
         this.setState({
             domainName: newDomain
-        })
-
+        });
     }
 
     renderTableData(){
@@ -75,7 +84,7 @@ class Content extends Component{
                 <td><img src={zahnrad} /></td>
                 <td>{domain.DomainInfo.domainName}</td>
                 <td><span>{domain.DomainInfo.domainAvailability}</span></td>
-                <td></td>
+                <td>{domain.checked}</td>
                 <td></td>
                 <td><img src={muelleimer} /></td>
             </tr>
