@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import List from './list';
 
 class InputField extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            apiKey: "at_XtU8CpRcPmD7AX6RWswtOOK0voVgH",
-            domainName: "",
-            };
+    constructor() {
+        super();
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         };

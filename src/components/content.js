@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../img/logo.svg';
-import zahnrad from '../img/zahnrad.svg';
-import muelleimer from '../img/muelleimer.svg';
+
+import { Row } from '../components/row';
 
 
 class Content extends Component{
@@ -24,19 +24,22 @@ class Content extends Component{
         });
     }
 
+    // Speichern der aktuellen Zeit für Prüfzeit
+    // !! noch nicht Funktionsfähig !!
     addTime() {
-        let today = new Date();
-        let date = today.getFullYear()+'
-        let time = today.getHours()+ ":
-        let dateTime = date+' '+time;
-        return dateTime
+        //let today = new Date();
+        //let date = today.getFullYear()+'
+        //let time = today.getHours()+ ":
+        //let dateTime = date+' '+time;
+        //return dateTime
     };
 
+    // Übertragen von Daten in den State
     addData(toAdd){
         // ID ins State geschrieben
         toAdd.id = Math.random();
-        // aktuelle Zeit wird zugewiesen
-        toAdd.checked = this.addTime();
+        // aktuelle Zeit wird ins State geschrieben
+        //toAdd.checked = this.addTime();
         // Daten werden ins State übertragen
         let domains = [toAdd];
         this.setState({
@@ -48,7 +51,7 @@ class Content extends Component{
     onSubmitHandler(event) {
 		event.preventDefault();
         // Ausgabe in der Konsole der aktuellen Werte
-        console.log(this.state); //this.addDomain(this.state);
+        console.log(this.state);
 
         // HTTP Anfrage an API
         fetch( "https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.state.domainName, {
@@ -60,14 +63,11 @@ class Content extends Component{
             // Ausgabe in der Konsole der API Response
         .then(responseData => {
             console.log(responseData);
+            // responseData wird in den State geschrieben
             this.addData(responseData);
-            // https://www.freecodecamp.org/forum/t/parsing-json-from-api-response/275420
-            //this.setState({DomainInfo}),
-            // const {DomainInfo: {domainAvailability: ''}} = this.state,
-            // console.log(domainAvailability),
-            //this.setState({ DomainInfo: JSON.parse(DomainInfo) }) {domainName: ''}
         });
 
+        // ?
         this.domainName = this.state;
         const newDomain = '';
 
@@ -80,15 +80,7 @@ class Content extends Component{
     renderTableData(){
        return this.state.domains.map(domain => {
             return (
-                <tr key={domain.id}>
-                <td><img src={zahnrad} /></td>
-                <td>{domain.DomainInfo.domainName}</td>
-                <td><span>{domain.DomainInfo.domainAvailability}</span></td>
-                <td>{domain.checked}</td>
-                <td></td>
-                <td><img src={muelleimer} /></td>
-            </tr>
-
+                <Row id={domain.id} url={domain.DomainInfo.domainName} availability={domain.DomainInfo.domainAvailability}/>
             )
         })
     }
