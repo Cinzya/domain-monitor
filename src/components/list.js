@@ -4,8 +4,8 @@ import logo from '../img/logo.svg';
 import { Row } from './row';
 import { InputField } from './input-field';
 
-class List extends Component{
-    constructor (props){
+class List extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             apiKey: "at_XtU8CpRcPmD7AX6RWswtOOK0voVgH",
@@ -15,6 +15,8 @@ class List extends Component{
         this.renderTableData = this.renderTableData.bind(this);
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
+        this.refreshList = this.refreshList.bind(this);
+
     }
 
     changeDomainHandler(event) {
@@ -35,7 +37,7 @@ class List extends Component{
     };
 
     // Übertragen von Daten in den State
-    addData(toAdd){
+    addData(toAdd) {
         // ID ins State geschrieben
         toAdd.id = Math.random();
         // aktuelle Zeit wird ins State geschrieben
@@ -54,7 +56,7 @@ class List extends Component{
         console.log(this.state);
 
         // HTTP Anfrage an API
-        fetch( "https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.state.domainName, {
+        fetch("https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.state.domainName, {
             method: 'GET',
         })
             .then(response => {
@@ -77,13 +79,24 @@ class List extends Component{
         });
     }
 
-    renderTableData(){
+    //Refresh-Button: muss auf das Datenfeld domain.id aus der Liste hinzugreifen und auf diese die Fetch-Methode anwenden.
+    refreshList() {
+
+        alert("bla");
+
+
+    }
+
+    renderTableData() {
         return this.state.domains.map(domain => {
             return (
-                <Row id={domain.id} url={domain.DomainInfo.domainName} availability={domain.DomainInfo.domainAvailability}/>
+                <Row id={domain.id} url={domain.DomainInfo.domainName} availability={domain.DomainInfo.domainAvailability} />
             )
         })
     }
+
+
+
 
 
     render() {
@@ -92,24 +105,24 @@ class List extends Component{
                 <div className="logo">
                     <h1><span>Domain</span> <span>Monitor</span></h1>
                     <img src={logo}
-                         alt="Logo"/>
+                        alt="Logo" />
                 </div>
 
-                <InputField domainName={this.state.domainName} changeDomain={this.changeDomainHandler} Submit={this.onSubmitHandler}/>
+                <InputField domainName={this.state.domainName} changeDomain={this.changeDomainHandler} Submit={this.onSubmitHandler} button={this.refreshList} />
 
                 <div className="domain-liste">
                     <div className="table-scrollable">
                         <table>
                             <tbody>
-                            <tr>
-                                <th className="symbole">Einstellungen</th>
-                                <th>Domain</th>
-                                <th>Status</th>
-                                <th>zuletzt geprüft</th>
-                                <th>hinzugefügt</th>
-                                <th className="symbole">Löschen</th>
-                            </tr>
-                            {this.renderTableData()}
+                                <tr>
+                                    <th className="symbole">Einstellungen</th>
+                                    <th>Domain</th>
+                                    <th>Status</th>
+                                    <th>zuletzt geprüft</th>
+                                    <th>hinzugefügt</th>
+                                    <th className="symbole">Löschen</th>
+                                </tr>
+                                {this.renderTableData()}
                             </tbody>
                         </table>
                     </div>

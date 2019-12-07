@@ -7,6 +7,6 @@ export const InputField = (props) => (
         <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein"
             value={props.domainName} onChange={props.changeDomain} />
         <input type="submit" className="button" value="Hinzufügen" />
-        <input type="refresh" className="button" id="refresh" value="Liste aktualisieren" />
+        <input type="button" className="button" id="refresh" onClick={props.refreshButton} value="Liste aktualisieren" />
     </form>
 );
