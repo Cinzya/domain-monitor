@@ -196,7 +196,10 @@ h1{
   background-color: #738298;
   color: white;
   border: 0px solid white;
+  margin-right: 5%;
+  text-align: center;
 }
+
 
 footer{
   background-color: #31373d;
