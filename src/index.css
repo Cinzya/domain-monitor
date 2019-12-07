@@ -59,6 +59,15 @@ table td, table th {
   text-align: center;
   empty-cells:show;
 }
+/*Drag and Drop Listen Elemente*/
+table .drag {
+  cursor: move;
+}
+
+table .drag img {
+  width: 2em;
+  height: auto;
+}
 
 /*Statusanzeige
 grün: #1d994f;
