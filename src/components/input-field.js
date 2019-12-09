@@ -1,12 +1,16 @@
 import React from 'react';
 
+
 export const InputField = (props) => (
+
+
+
     <form className="domain-eingabe"
         onSubmit={(event) => { props.Submit(event) }} >
 
         <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein"
             value={props.domainName} onChange={props.changeDomain} />
         <input type="submit" className="button" value="Hinzufügen" />
-        <input type="button" className="button" id="refresh" onClick={props.refreshButton} value="Liste aktualisieren" />
+        <input type="button" className="button" id="refresh" onClick={props.refresh} value="Liste aktualisieren" />
     </form>
 );

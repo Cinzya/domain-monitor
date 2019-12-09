@@ -79,13 +79,11 @@ class List extends Component {
         });
     }
 
-    //Refresh-Button: muss auf das Datenfeld domain.id aus der Liste hinzugreifen und auf diese die Fetch-Methode anwenden.
+    //Refresh-Button: muss auf das Datenfeld domain.id aus der Liste hinzugreifen und auf diese die Fetch-Methode anwenden. Status aktualisieren und ggfs. Zeit der letzen Abfrage.
     refreshList() {
-
         alert("bla");
-
-
     }
+
 
     renderTableData() {
         return this.state.domains.map(domain => {
@@ -108,7 +106,7 @@ class List extends Component {
                         alt="Logo" />
                 </div>
 
-                <InputField domainName={this.state.domainName} changeDomain={this.changeDomainHandler} Submit={this.onSubmitHandler} button={this.refreshList} />
+                <InputField domainName={this.state.domainName} changeDomain={this.changeDomainHandler} Submit={this.onSubmitHandler} refresh={this.refreshList} />
 
                 <div className="domain-liste">
                     <div className="table-scrollable">
