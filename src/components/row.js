@@ -9,6 +9,10 @@ export const Row = (props) => (
         <td><span className={props.availability}>{props.availability}</span></td>
         <td>{props.time}</td>
         <td></td>
-        <td><img src={muelleimer} /></td>
+        <td> 
+            <form>
+                <input onClick={props.delete} type="image" src={muelleimer} alt="Mülleimer als Button"/>
+            </form>
+            </td>
     </tr>
 );

@@ -4,13 +4,15 @@ import logo from '../img/logo.svg';
 import { Row } from './row';
 import { InputField } from './input-field';
 
+
 class List extends Component{
     constructor (props){
         super(props);
+        this.rowID = 0;
         this.state = {
             apiKey: "at_XtU8CpRcPmD7AX6RWswtOOK0voVgH",
             domainName: "",
-            domains: []
+            domains: [],
         };
         this.renderTableData = this.renderTableData.bind(this);
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
@@ -36,6 +38,7 @@ class List extends Component{
 
     // Übertragen von Daten in den State
     addData(toAdd){
+
         // ID ins State geschrieben
         toAdd.id = Math.random();
         // aktuelle Zeit wird ins State geschrieben
@@ -47,6 +50,56 @@ class List extends Component{
         });
         console.log(this.state.domains)
     }
+
+    //Zeile wird gelöscht
+    deleteEvent = (index) =>{
+       const copyRowArray = Object.assign([], this.state.domains);
+       copyRowArray.splice (index, 1);
+           this.setState({
+               domains : copyRowArray
+           })
+       }
+
+       //andere Lösung für Zeile hinzufügen
+       /* addRow = () => {
+            this.rowID = this.rowID + 1;
+            const copyRowArray = Object.assign([], this.state.domains);
+            copyRowArray.push({
+                id: this.rowID,
+                DomainInfo: []
+            })
+            this.setState({
+                domains : copyRowArray,
+               })
+            }*/
+
+            //wird noch nicht aufgerufen
+            addRow = () => {
+                let domains = [];
+                const copyRowArray = Object.assign([], this.state.domains);
+                this.setState({
+                    domains : domains.concat(copyRowArray), 
+                });}
+
+            // fügt neue Zeile hinzu, aber doppelt
+            addRow2 = () => {
+                const copyRowArray = Object.assign([], this.state.domains);
+                this.setState({
+                        domains : this.state.domains.concat(copyRowArray),
+                       });
+                }
+            
+        
+                
+                /*let domains = []
+                for (var i = 0; i < responseData.length; i++){
+                    domains.push(responseData[i])
+                }
+                this.setState({
+                    other: domains
+                })*/
+  
+
 
     onSubmitHandler(event) {
         event.preventDefault();
@@ -65,8 +118,10 @@ class List extends Component{
                 console.log(responseData);
                 // responseData wird in den State geschrieben
                 this.addData(responseData);
-            });
+                this.addRow2();
+            }); 
 
+           
         // ?
         this.domainName = this.state;
 
@@ -76,14 +131,21 @@ class List extends Component{
             domainName: newDomain
         });
     }
+           
 
-    renderTableData(){
-        return this.state.domains.map(domain => {
-            return (
-                <Row id={domain.id} url={domain.DomainInfo.domainName} availability={domain.DomainInfo.domainAvailability}/>
-            )
-        })
-    }
+        renderTableData(){
+            return this.state.domains.map((domain, index)=> {
+                     return (
+                        <Row 
+                        key= {domain.id}
+                        id={domain.id} 
+                        url={domain.DomainInfo.domainName} 
+                        availability={domain.DomainInfo.domainAvailability}
+                        delete={this.deleteEvent.bind(this, index)}/>
+                     );
+            })
+        }
+
 
 
     render() {
@@ -109,7 +171,7 @@ class List extends Component{
                                 <th>hinzugefügt</th>
                                 <th className="symbole">Löschen</th>
                             </tr>
-                            {this.renderTableData()}
+                            {this.renderTableData()}                       
                             </tbody>
                         </table>
                     </div>
