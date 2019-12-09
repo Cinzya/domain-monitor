@@ -37,20 +37,20 @@ class List extends Component{
         //return dateTime
     };
 
-    //Sortiert Elemente nach dem Unicode
+    //Sortiert Elemente nach dem Rückgabewert dieser Funktion
+    compareBy(key){
+        return function(a,b) {
+            if(a < b) return -1;
+            if(a > b) return +1;
+            return 0;
+        };
+    }
+
+    //Sortiert Elemente nach der compareBy Function
     sortBy(key) {
         let arrayCopy = [...this.state.domains];
         arrayCopy.sort(this.compareBy(key));
         this.setState({domains: arrayCopy});
-    }
-
-    //Sortiert Elemente nach dem Rückgabewert dieser Funktion
-    compareBy(key){
-        return function(a,b) {
-            if(a[key] < b[key]) return -1;
-            if(a[key] > b[key]) return +1;
-            return 0;
-        };
     }
 
     // Übertragen von Daten in den State
