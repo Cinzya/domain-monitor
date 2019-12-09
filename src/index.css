@@ -54,19 +54,10 @@ table tr:nth-child(even) {
 }
 
 /*Formatierung Ueberschriften und Unterpunkte*/
-table td, table th {
+table td, table th, th button {
   padding: 2% 1.5%;
   text-align: center;
   empty-cells:show;
-}
-/*Drag and Drop Listen Elemente*/
-table .drag {
-  cursor: move;
-}
-
-table .drag img {
-  width: 2em;
-  height: auto;
 }
 
 /*Statusanzeige
