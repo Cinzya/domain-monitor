@@ -82,6 +82,20 @@ class List extends Component {
     //Refresh-Button: muss auf das Datenfeld domain.id aus der Liste hinzugreifen und auf diese die Fetch-Methode anwenden. Status aktualisieren und ggfs. Zeit der letzen Abfrage.
     refreshList() {
         alert("bla");
+        //fetch-Methode, anstatt this.state.domainName (der in Input-Field festgelegt ist muss dann das aus der Tabelle raus- ist aber in Row gespeichert ??)
+        fetch("https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.domainName, {
+            method: 'GET',
+        })
+            .then(response => {
+                return response.json();
+            })
+            .then(responseData => {
+                console.log(responseData);
+
+            })
+
+
+
     }
 
 
