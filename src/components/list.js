@@ -121,10 +121,10 @@ class List extends Component{
                             <tbody>
                             <tr>
                                 <th className="symbole">Einstellungen</th>
-                                <th> <button onClick={() => this.sortBy('this.url')} > Domain </button></th>
-                                <th> <button onClick={() => this.sortBy('this.availability')} > Status </button> </th>
-                                <th> <button onClick={() => this.sortBy('this.time')} >zuetzt geprüft</button> </th>
-                                <th> <button onClick={() => this.sortBy('')} >hinzugefügt</button> </th>
+                                <th> <button onClick={() => this.sortBy(this.domainName)} > Domain </button></th>
+                                <th> <button onClick={() => this.sortBy(this.apiKey)} > Status </button> </th>
+                                <th> <button onClick={() => this.sortBy()} >zuetzt geprüft</button> </th>
+                                <th> <button onClick={() => this.sortBy()} >hinzugefügt</button> </th>
                                 <th className="symbole">Löschen</th>
                             </tr>
                             {this.renderTableData()}
