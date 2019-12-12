@@ -4,19 +4,22 @@ import logo from '../img/logo.svg';
 import { Row } from './row';
 import { InputField } from './input-field';
 
+let count = 0;
 
 class List extends Component{
     constructor (props){
         super(props);
-        this.rowID = 0;
         this.state = {
-            apiKey: "at_XtU8CpRcPmD7AX6RWswtOOK0voVgH",
+            apiKey: "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX",
             domainName: "",
             domains: [],
         };
         this.renderTableData = this.renderTableData.bind(this);
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
+        this.addData = this.addData.bind(this);
+        this.fakeID = count;
+        count ++;
     }
 
     changeDomainHandler(event) {
@@ -38,16 +41,30 @@ class List extends Component{
 
     // Übertragen von Daten in den State
     addData(toAdd){
-
+console.log("***************",toAdd, this.fa);
         // ID ins State geschrieben
         toAdd.id = Math.random();
         // aktuelle Zeit wird ins State geschrieben
         //toAdd.checked = this.addTime();
         // Daten werden ins State übertragen
         let domains = [toAdd];
-        this.setState({
-            domains: domains
+        //Daten werden in das Array gepusht
+        // this.state.domains.push({
+        //     id: this.id,
+        //     apiKey: "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX",
+        //     domainName: "",
+        //     DomainInfo: []
+        // });
+    
+        this.setState((state, pr) => {
+            return {domains: state.domains.concat({
+                    id: this.id,
+                    apiKey: "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX",
+                    domainName: "",
+                    DomainInfo: []
+                })}
         });
+        this.id = this.id + 1;
         console.log(this.state.domains)
     }
 
@@ -71,10 +88,10 @@ class List extends Component{
             this.setState({
                 domains : copyRowArray,
                })
-            }*/
+            }
 
             //wird noch nicht aufgerufen
-            addRow = () => {
+/*             addRow = () => {
                 let domains = [];
                 const copyRowArray = Object.assign([], this.state.domains);
                 this.setState({
@@ -87,18 +104,8 @@ class List extends Component{
                 this.setState({
                         domains : this.state.domains.concat(copyRowArray),
                        });
-                }
+                } */
             
-        
-                
-                /*let domains = []
-                for (var i = 0; i < responseData.length; i++){
-                    domains.push(responseData[i])
-                }
-                this.setState({
-                    other: domains
-                })*/
-  
 
 
     onSubmitHandler(event) {
@@ -118,7 +125,6 @@ class List extends Component{
                 console.log(responseData);
                 // responseData wird in den State geschrieben
                 this.addData(responseData);
-                this.addRow2();
             }); 
 
            
