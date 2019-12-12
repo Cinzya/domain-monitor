@@ -59,14 +59,14 @@ table td, table th {
   text-align: center;
   empty-cells:show;
 }
-/*Drag and Drop Listen Elemente*/
-table .drag {
-  cursor: move;
-}
 
-table .drag img {
-  width: 2em;
-  height: auto;
+/*Sortier buttons in th*/
+th button {
+  color: #ffff;
+  background-color: #5b687b;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
 }
 
 /*Statusanzeige

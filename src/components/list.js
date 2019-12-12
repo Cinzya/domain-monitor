@@ -12,12 +12,12 @@ class List extends Component{
             domainName: "",
             domains: []
         };
+        
         this.renderTableData = this.renderTableData.bind(this);
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
-        this.onDragStart = this.onDragStart.bind(this);
-        this.onDragOver = this.onDragOver.bind(this);
-        this.onDragEnd = this.onDragEnd.bind(this);
+        this.compareBy = this.compareBy.bind(this);
+        this.sortBy = this.sortBy.bind(this);
     }
 
     changeDomainHandler(event) {
@@ -37,39 +37,20 @@ class List extends Component{
         //return dateTime
     };
 
-    //Einzelne Listenelemente bewegen 
-    onDragStart(e, index) {
-        this.draggedItem = this.state.domains[index];
-        e.dataTransfer.effectAllowed = "move";
-        
-        /*Soll das bewegte Element als die ganze Reihe setzen
-        Momentan ist es noch auf nur das Burgermenü gesetzt
-        Aber wie spricht man das an?*/
-        e.dataTransfer.setData("text/html", e.target.parentNode);
-        e.dataTransfer.setDragImage(e.target.parentNode, 20, 20); 
+    //Sortiert Elemente nach dem Rückgabewert dieser Funktion
+    compareBy(key){
+        return function(a,b) {
+            if(a < b) return -1;
+            if(a > b) return +1;
+            return 0;
+        };
     }
 
-    onDragOver(index) {
-        const draggedOverItem = this.state.domains[index];
-
-        //Wenn das Element über sich selbst verschoben wird, tu nichts
-        if(this.draggedItem === draggedOverItem) {
-            return;
-        }
-
-        //Welches Element wird gerade bewegt?
-        let items = this.state.domains.filter(item => item !== this.draggedItem);
-
-        //Setzt das draggedItem über das draggedOverItem
-        items.splice(index, 0, this.draggedItem);
-
-        this.setState({items});
-
-    }
-    
-    //Setzt das momentan bewegte Element auf null, wenn das draggen vorbei ist
-    onDragEnd() {
-        this.draggedItem = null;
+    //Sortiert Elemente nach der compareBy Function
+    sortBy(key) {
+        let arrayCopy = [...this.state.domains];
+        arrayCopy.sort(this.compareBy(key));
+        this.setState({domains: arrayCopy});
     }
 
     // Übertragen von Daten in den State
@@ -118,7 +99,7 @@ class List extends Component{
     renderTableData(){
         return this.state.domains.map(domain => {
             return (
-                <Row onDragStart={e => this.onDragStart(e)} onDragOver={() => this.onDragOver} id={domain.id} url={domain.DomainInfo.domainName} availability={domain.DomainInfo.domainAvailability}/>
+                <Row id={domain.id} url={domain.DomainInfo.domainName} availability={domain.DomainInfo.domainAvailability}/>
             )
         })
     }
@@ -139,12 +120,11 @@ class List extends Component{
                         <table>
                             <tbody>
                             <tr>
-                                <th></th>
                                 <th className="symbole">Einstellungen</th>
-                                <th>Domain</th>
-                                <th>Status</th>
-                                <th>zuletzt geprüft</th>
-                                <th>hinzugefügt</th>
+                                <th> <button onClick={() => this.sortBy(this.domainName)} > Domain </button></th>
+                                <th> <button onClick={() => this.sortBy(this.apiKey)} > Status </button> </th>
+                                <th> <button onClick={() => this.sortBy()} >zuetzt geprüft</button> </th>
+                                <th> <button onClick={() => this.sortBy()} >hinzugefügt</button> </th>
                                 <th className="symbole">Löschen</th>
                             </tr>
                             {this.renderTableData()}
