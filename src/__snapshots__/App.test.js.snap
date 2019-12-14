@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`InputField should render correctly in "debug" mode 1`] = `ShallowWrapper {}`;
-
-exports[`Intro should render correctly in "debug" mode 1`] = `ShallowWrapper {}`;
-
-exports[`List should render correctly in "debug" mode 1`] = `ShallowWrapper {}`;
-
-exports[`Navigation should render correctly in "debug" mode 1`] = `ShallowWrapper {}`;
