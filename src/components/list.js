@@ -48,23 +48,13 @@ console.log("***************",toAdd, this.fa);
         //toAdd.checked = this.addTime();
         // Daten werden ins State übertragen
         let domains = [toAdd];
-        //Daten werden in das Array gepusht
-        // this.state.domains.push({
-        //     id: this.id,
-        //     apiKey: "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX",
-        //     domainName: "",
-        //     DomainInfo: []
-        // });
-    
+
+        // Der aktuelle State domains wird die API Daten hinzugefügt
         this.setState((state, pr) => {
             return {domains: state.domains.concat({
-                    id: this.id,
-                    apiKey: "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX",
-                    domainName: "",
-                    DomainInfo: []
+                   domains: domains
                 })}
         });
-        this.id = this.id + 1;
         console.log(this.state.domains)
     }
 
@@ -75,38 +65,7 @@ console.log("***************",toAdd, this.fa);
            this.setState({
                domains : copyRowArray
            })
-       }
-
-       //andere Lösung für Zeile hinzufügen
-       /* addRow = () => {
-            this.rowID = this.rowID + 1;
-            const copyRowArray = Object.assign([], this.state.domains);
-            copyRowArray.push({
-                id: this.rowID,
-                DomainInfo: []
-            })
-            this.setState({
-                domains : copyRowArray,
-               })
-            }
-
-            //wird noch nicht aufgerufen
-/*             addRow = () => {
-                let domains = [];
-                const copyRowArray = Object.assign([], this.state.domains);
-                this.setState({
-                    domains : domains.concat(copyRowArray), 
-                });}
-
-            // fügt neue Zeile hinzu, aber doppelt
-            addRow2 = () => {
-                const copyRowArray = Object.assign([], this.state.domains);
-                this.setState({
-                        domains : this.state.domains.concat(copyRowArray),
-                       });
-                } */
-            
-
+       };
 
     onSubmitHandler(event) {
         event.preventDefault();
