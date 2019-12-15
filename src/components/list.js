@@ -4,22 +4,17 @@ import logo from '../img/logo.svg';
 import { Row } from './row';
 import { InputField } from './input-field';
 
-let count = 0;
-
 class List extends Component{
     constructor (props){
         super(props);
         this.state = {
             apiKey: "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX",
             domainName: "",
-            domains: [],
+            domains: []
         };
         this.renderTableData = this.renderTableData.bind(this);
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
-        this.addData = this.addData.bind(this);
-        this.fakeID = count;
-        count ++;
     }
 
     changeDomainHandler(event) {
@@ -41,19 +36,15 @@ class List extends Component{
 
     // Übertragen von Daten in den State
     addData(toAdd){
-console.log("***************",toAdd, this.fa);
         // ID ins State geschrieben
         toAdd.id = Math.random();
         // aktuelle Zeit wird ins State geschrieben
         //toAdd.checked = this.addTime();
         // Daten werden ins State übertragen
         let domains = [toAdd];
-
         // Der aktuelle State domains wird die API Daten hinzugefügt
-        this.setState((state, pr) => {
-            return {domains: state.domains.concat({
-                   domains: domains
-                })}
+        this.setState((state) => {
+            return {domains: state.domains.concat(domains)}
         });
         console.log(this.state.domains)
     }
