@@ -61,12 +61,12 @@ class List extends Component{
         //toAdd.checked = this.addTime();
         // Daten werden ins State übertragen
         let domains = [toAdd];
-        this.setState({
-            domains: domains
-        });
-        console.log(this.state.domains)
-    }
-
+           this.setState({
+           domains: domains
+                        });
+                        console.log(this.state.domains)
+                 }
+ 
     onSubmitHandler(event) {
         event.preventDefault();
         // Ausgabe in der Konsole der aktuellen Werte
@@ -99,7 +99,7 @@ class List extends Component{
     renderTableData(){
         return this.state.domains.map(domain => {
             return (
-                <Row id={domain.id} url={domain.DomainInfo.domainName} availability={domain.DomainInfo.domainAvailability}/>
+                <Row id={domain.id} url={domain.DomainInfo.domainName} availability={domain.DomainInfo.domainAvailability}/>    
             )
         })
     }
