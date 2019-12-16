@@ -8,7 +8,7 @@ class List extends Component{
     constructor (props){
         super(props);
         this.state = {
-            apiKey: "at_XtU8CpRcPmD7AX6RWswtOOK0voVgH",
+            apiKey: "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX",
             domainName: "",
             domains: []
         };
@@ -42,11 +42,21 @@ class List extends Component{
         //toAdd.checked = this.addTime();
         // Daten werden ins State übertragen
         let domains = [toAdd];
-        this.setState({
-            domains: domains
+        // Der aktuelle State domains wird die API Daten hinzugefügt
+        this.setState((state) => {
+            return {domains: state.domains.concat(domains)}
         });
         console.log(this.state.domains)
     }
+
+    //Zeile wird gelöscht
+    deleteEvent = (index) =>{
+       const copyRowArray = Object.assign([], this.state.domains);
+       copyRowArray.splice (index, 1);
+           this.setState({
+               domains : copyRowArray
+           })
+       };
 
     onSubmitHandler(event) {
         event.preventDefault();
@@ -65,8 +75,9 @@ class List extends Component{
                 console.log(responseData);
                 // responseData wird in den State geschrieben
                 this.addData(responseData);
-            });
+            }); 
 
+           
         // ?
         this.domainName = this.state;
 
@@ -76,14 +87,21 @@ class List extends Component{
             domainName: newDomain
         });
     }
+           
 
-    renderTableData(){
-        return this.state.domains.map(domain => {
-            return (
-                <Row id={domain.id} url={domain.DomainInfo.domainName} availability={domain.DomainInfo.domainAvailability}/>
-            )
-        })
-    }
+        renderTableData(){
+            return this.state.domains.map((domain, index)=> {
+                     return (
+                        <Row 
+                        key= {domain.id}
+                        id={domain.id} 
+                        url={domain.DomainInfo.domainName} 
+                        availability={domain.DomainInfo.domainAvailability}
+                        delete={this.deleteEvent.bind(this, index)}/>
+                     );
+            })
+        }
+
 
 
     render() {
@@ -109,7 +127,7 @@ class List extends Component{
                                 <th>hinzugefügt</th>
                                 <th className="symbole">Löschen</th>
                             </tr>
-                            {this.renderTableData()}
+                            {this.renderTableData()}                       
                             </tbody>
                         </table>
                     </div>
