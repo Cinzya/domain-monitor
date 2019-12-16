@@ -37,21 +37,6 @@ class List extends Component{
         //return dateTime
     };
 
-    //Sortiert Elemente nach dem Rückgabewert dieser Funktion
-    compareBy(key){
-        return function(a,b) {
-            if(a < b) return -1;
-            if(a > b) return +1;
-            return 0;
-        };
-    }
-
-    //Sortiert Elemente nach der compareBy Function
-    sortBy(key) {
-        let arrayCopy = [...this.state.domains];
-        arrayCopy.sort(this.compareBy(key));
-        this.setState({domains: arrayCopy});
-    }
 
     // Übertragen von Daten in den State
     addData(toAdd){
@@ -61,8 +46,8 @@ class List extends Component{
         //toAdd.checked = this.addTime();
         // Daten werden ins State übertragen
         let domains = [toAdd];
-           this.setState({
-           domains: domains
+        this.setState({
+            domains: domains
                         });
                         console.log(this.state.domains)
                  }
@@ -96,6 +81,22 @@ class List extends Component{
         });
     }
 
+        //Sortiert Elemente nach dem Rückgabewert dieser Funktion
+        compareBy(key){
+            return function(a,b) {
+                if(a[key] < b[key]) return -1;
+                if(a[key] > b[key]) return +1;
+                return 0;
+            };
+        }
+    
+        //Sortiert Elemente nach der compareBy Function
+        sortBy(key) {
+            let arrayCopy = [...this.state.domains];
+            arrayCopy.sort(this.compareBy(key));
+            this.setState({domains: arrayCopy});
+        }
+
     renderTableData(){
         return this.state.domains.map(domain => {
             return (
@@ -122,8 +123,8 @@ class List extends Component{
                             <tr>
                                 <th className="symbole">Einstellungen</th>
                                 <th> <button onClick={() => this.sortBy(this.domainName)} > Domain </button></th>
-                                <th> <button onClick={() => this.sortBy(this.apiKey)} > Status </button> </th>
-                                <th> <button onClick={() => this.sortBy()} >zuetzt geprüft</button> </th>
+                                <th> <button onClick={() => this.sortBy(this.domainAvailability)} > Status </button> </th>
+                                <th> <button onClick={() => this.sortBy("time")} >zuetzt geprüft</button> </th>
                                 <th> <button onClick={() => this.sortBy()} >hinzugefügt</button> </th>
                                 <th className="symbole">Löschen</th>
                             </tr>
