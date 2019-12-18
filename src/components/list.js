@@ -15,6 +15,7 @@ class List extends Component{
         this.renderTableData = this.renderTableData.bind(this);
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
+        this.compare = this.compare.bind(this);
     }
 
     changeDomainHandler(event) {
@@ -74,10 +75,10 @@ class List extends Component{
             .then(responseData => {
                 console.log(responseData);
                 // responseData wird in den State geschrieben
-                this.addData(responseData);
-            }); 
+                this.addData(responseData.DomainInfo);
+                console.log(this.state.domains);
+            });
 
-           
         // ?
         this.domainName = this.state;
 
@@ -87,22 +88,36 @@ class List extends Component{
             domainName: newDomain
         });
     }
-           
 
-        renderTableData(){
-            return this.state.domains.map((domain, index)=> {
-                     return (
-                        <Row 
-                        key= {domain.id}
-                        id={domain.id} 
-                        url={domain.DomainInfo.domainName} 
-                        availability={domain.DomainInfo.domainAvailability}
-                        delete={this.deleteEvent.bind(this, index)}/>
-                     );
-            })
-        }
+    renderTableData(){
+        return this.state.domains.map(domain => {
+            return (
+                <Row id={domain.id} url={domain.domainName} availability={domain.domainAvailability} delete={this.deleteEvent.bind(this, index)}/>/>
+            )
+        })
+    }
 
+    compare(key) {
+        return function innerSort(a, b) {
+            if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+                // property doesn't exist on either object
+                return 0;
+            }
 
+            const varA = (typeof a[key] === 'string')
+                ? a[key].toUpperCase() : a[key];
+            const varB = (typeof b[key] === 'string')
+                ? b[key].toUpperCase() : b[key];
+
+            let comparison = 0;
+            if (varA > varB) {
+                comparison = 1;
+            } else if (varA < varB) {
+                comparison = -1;
+            }
+            return comparison
+        };
+    }
 
     render() {
         return (
@@ -121,13 +136,25 @@ class List extends Component{
                             <tbody>
                             <tr>
                                 <th className="symbole">Einstellungen</th>
-                                <th>Domain</th>
-                                <th>Status</th>
-                                <th>zuletzt geprüft</th>
-                                <th>hinzugefügt</th>
+                                <th> <button onClick={() =>
+                                    {
+                                        const sorted = this.state.domains.sort(this.compare("domainName"));
+                                        this.setState({
+                                            domains: sorted
+                                        });
+                                    }
+                                }> Domain </button></th>
+                                <th> <button onClick={() => {
+                                    const sorted = this.state.domains.sort(this.compare("domainAvailability"));
+                                    this.setState({
+                                        domains: sorted
+                                    });
+                                }}> Status </button> </th>
+                                <th> <button >zuetzt geprüft</button> </th>
+                                <th> <button>hinzugefügt</button> </th>
                                 <th className="symbole">Löschen</th>
                             </tr>
-                            {this.renderTableData()}                       
+                            {this.renderTableData()}
                             </tbody>
                         </table>
                     </div>

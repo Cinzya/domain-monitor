@@ -60,6 +60,15 @@ table td, table th {
   empty-cells:show;
 }
 
+/*Sortier buttons in th*/
+th button {
+  color: #ffff;
+  background-color: #5b687b;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+}
+
 /*Statusanzeige
 grün: #1d994f;
 rot: #e24b4b */
