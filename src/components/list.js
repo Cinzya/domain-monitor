@@ -25,16 +25,6 @@ class List extends Component{
         });
     }
 
-    // Speichern der aktuellen Zeit für Prüfzeit
-    // !! noch nicht Funktionsfähig !!
-    addTime() {
-        //let today = new Date();
-        //let date = today.getFullYear()+'
-        //let time = today.getHours()+ ":
-        //let dateTime = date+' '+time;
-        //return dateTime
-    };
-
     // Übertragen von Daten in den State
     addData(toAdd){
         // ID ins State geschrieben
@@ -159,8 +149,18 @@ class List extends Component{
                                         domains: sorted
                                     });
                                 }}> Status </button> </th>
-                                <th> <button>zuetzt geprüft</button> </th>
-                                <th> <button>hinzugefügt</button> </th>
+                                <th> <button onClick={() => {
+                                    const sorted = this.state.domains.sort(this.compare("timeChecked"));
+                                    this.setState({
+                                        domains: sorted
+                                    });
+                                }}>zuetzt geprüft</button> </th>
+                                <th> <button onClick={() => {
+                                    const sorted = this.state.domains.sort(this.compare("timeAdded"));
+                                    this.setState({
+                                        domains: sorted
+                                    });
+                                }}>hinzugefügt</button> </th>
                                 <th className="symbole">Löschen</th>
                             </tr>
                             {this.renderTableData()}
