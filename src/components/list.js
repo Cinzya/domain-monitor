@@ -10,7 +10,19 @@ class List extends Component{
         this.state = {
             apiKey: "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX",
             domainName: "",
-            domains: []
+            domains: [
+                {
+                    id: 1,
+                    domainName: "google.com",
+                    domainAvailability: "UNAVAILABLE"
+                },
+                {
+                    id: 2,
+                    domainName: "cynthiaebert.de",
+                    domainAvailability: "AVAILABLE"
+
+                }
+            ]
         };
         
         this.renderTableData = this.renderTableData.bind(this);
@@ -68,7 +80,8 @@ class List extends Component{
             .then(responseData => {
                 console.log(responseData);
                 // responseData wird in den State geschrieben
-                this.addData(responseData);
+                this.addData(responseData.DomainInfo);
+                console.log(this.state.domains);
             });
 
         // ?
@@ -84,32 +97,31 @@ class List extends Component{
     renderTableData(){
         return this.state.domains.map(domain => {
             return (
-                <Row id={domain.id} url={domain.DomainInfo.domainName} availability={domain.DomainInfo.domainAvailability}/>    
+                <Row id={domain.id} url={domain.domainName} availability={domain.domainAvailability}/>
             )
         })
     }
 
-    compare(a, b) {
-        // Use toUpperCase() to ignore character casing
-        const domainA = a.DomainInfo.domainName.toUpperCase();
-        const domainB = b.DomainInfo.domainName.toUpperCase();
+    compare(key) {
+        return function innerSort(a, b) {
+            if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+                // property doesn't exist on either object
+                return 0;
+            }
 
-        let comparison = 0;
-        if (domainA > domainB) {
-            comparison = 1;
-        } else if (domainA < domainB) {
-            comparison = -1;
-        }
-        return comparison;
-    }
+            const varA = (typeof a[key] === 'string')
+                ? a[key].toUpperCase() : a[key];
+            const varB = (typeof b[key] === 'string')
+                ? b[key].toUpperCase() : b[key];
 
-    sort() {
-        const sorted = this.state.domains.sort(this.compare);
-        this.setState({
-            domains: sorted
-        });
-        console.log("Domains sortiert");
-        console.log(this.state.domains);
+            let comparison = 0;
+            if (varA > varB) {
+                comparison = 1;
+            } else if (varA < varB) {
+                comparison = -1;
+            }
+            return comparison
+        };
     }
 
     render() {
@@ -129,8 +141,20 @@ class List extends Component{
                             <tbody>
                             <tr>
                                 <th className="symbole">Einstellungen</th>
-                                <th> <button onClick={this.sort}> Domain </button></th>
-                                <th> <button> Status </button> </th>
+                                <th> <button onClick={() =>
+                                    {
+                                        const sorted = this.state.domains.sort(this.compare("domainName"));
+                                        this.setState({
+                                            domains: sorted
+                                        });
+                                    }
+                                }> Domain </button></th>
+                                <th> <button onClick={() => {
+                                    const sorted = this.state.domains.sort(this.compare("domainAvailability"));
+                                    this.setState({
+                                        domains: sorted
+                                    });
+                                }}> Status </button> </th>
                                 <th> <button>zuetzt geprüft</button> </th>
                                 <th> <button>hinzugefügt</button> </th>
                                 <th className="symbole">Löschen</th>
