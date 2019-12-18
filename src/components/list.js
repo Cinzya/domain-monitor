@@ -39,8 +39,11 @@ class List extends Component{
     addData(toAdd){
         // ID ins State geschrieben
         toAdd.id = Math.random();
-        // aktuelle Zeit wird ins State geschrieben
-        //toAdd.checked = this.addTime();
+        // aktuelles Datum + Uhrzeit wird in State geschrieben
+        let tempDate = new Date();
+        let currentDate = tempDate.getDate() + '-' + (tempDate.getMonth()+1) + '-' + tempDate.getFullYear() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes()+':'+ tempDate.getSeconds();
+        toAdd.timeAdded = currentDate;
+        toAdd.timeChecked = currentDate;
         // Daten werden ins State übertragen
         let domains = [toAdd];
         // Der aktuelle State domains wird die API Daten hinzugefügt
@@ -92,7 +95,13 @@ class List extends Component{
     renderTableData(){
         return this.state.domains.map((domain, index) => {
             return (
-                <Row id={domain.id} url={domain.domainName} availability={domain.domainAvailability} delete={this.deleteEvent.bind(this, index)}/>
+                <Row
+                    id={domain.id}
+                    url={domain.domainName}
+                    availability={domain.domainAvailability}
+                    checked={domain.timeChecked}
+                    added={domain.timeAdded}
+                    delete={this.deleteEvent.bind(this, index)}/>
             )
         })
     }
@@ -150,7 +159,7 @@ class List extends Component{
                                         domains: sorted
                                     });
                                 }}> Status </button> </th>
-                                <th> <button >zuetzt geprüft</button> </th>
+                                <th> <button>zuetzt geprüft</button> </th>
                                 <th> <button>hinzugefügt</button> </th>
                                 <th className="symbole">Löschen</th>
                             </tr>

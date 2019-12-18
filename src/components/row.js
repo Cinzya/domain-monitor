@@ -7,8 +7,8 @@ export const Row = (props) => (
         <td><img src={zahnrad} alt="Zahnradbutton für Einstellungen"/></td>
         <td>{props.url}</td>
         <td><span className={props.availability}>{props.availability}</span></td>
-        <td>{props.time}</td>
-        <td></td>
+        <td>{props.checked}</td>
+        <td>{props.added}</td>
         <td>
             <form>
                 <input onClick={props.delete} type="image" src={muelleimer} alt="Mülleimer als Button"/>
