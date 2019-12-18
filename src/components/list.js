@@ -10,26 +10,13 @@ class List extends Component{
         this.state = {
             apiKey: "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX",
             domainName: "",
-            domains: [
-                {
-                    id: 1,
-                    domainName: "google.com",
-                    domainAvailability: "UNAVAILABLE"
-                },
-                {
-                    id: 2,
-                    domainName: "cynthiaebert.de",
-                    domainAvailability: "AVAILABLE"
-
-                }
-            ]
+            domains: []
         };
         
         this.renderTableData = this.renderTableData.bind(this);
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         this.compare = this.compare.bind(this);
-        this.sort = this.sort.bind(this);
     }
 
     changeDomainHandler(event) {
@@ -155,7 +142,7 @@ class List extends Component{
                                         domains: sorted
                                     });
                                 }}> Status </button> </th>
-                                <th> <button>zuetzt geprüft</button> </th>
+                                <th> <button >zuetzt geprüft</button> </th>
                                 <th> <button>hinzugefügt</button> </th>
                                 <th className="symbole">Löschen</th>
                             </tr>
