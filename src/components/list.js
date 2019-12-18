@@ -16,8 +16,8 @@ class List extends Component{
         this.renderTableData = this.renderTableData.bind(this);
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
-        this.compareBy = this.compareBy.bind(this);
-        this.sortBy = this.sortBy.bind(this);
+        this.compare = this.compare.bind(this);
+        this.sort = this.sort.bind(this);
     }
 
     changeDomainHandler(event) {
@@ -81,28 +81,35 @@ class List extends Component{
         });
     }
 
-        //Sortiert Elemente nach dem Rückgabewert dieser Funktion
-        compareBy(key){
-            return function(a,b) {
-                if(a[key] < b[key]) return -1;
-                if(a[key] > b[key]) return +1;
-                return 0;
-            };
-        }
-    
-        //Sortiert Elemente nach der compareBy Function
-        sortBy(key) {
-            let arrayCopy = [...this.state.domains];
-            arrayCopy.sort(this.compareBy(key));
-            this.setState({domains: arrayCopy});
-        }
-
     renderTableData(){
         return this.state.domains.map(domain => {
             return (
                 <Row id={domain.id} url={domain.DomainInfo.domainName} availability={domain.DomainInfo.domainAvailability}/>    
             )
         })
+    }
+
+    compare(a, b) {
+        // Use toUpperCase() to ignore character casing
+        const domainA = a.DomainInfo.domainName.toUpperCase();
+        const domainB = b.DomainInfo.domainName.toUpperCase();
+
+        let comparison = 0;
+        if (domainA > domainB) {
+            comparison = 1;
+        } else if (domainA < domainB) {
+            comparison = -1;
+        }
+        return comparison;
+    }
+
+    sort() {
+        const sorted = this.state.domains.sort(this.compare);
+        this.setState({
+            domains: sorted
+        });
+        console.log("Domains sortiert");
+        console.log(this.state.domains);
     }
 
     render() {
@@ -122,10 +129,10 @@ class List extends Component{
                             <tbody>
                             <tr>
                                 <th className="symbole">Einstellungen</th>
-                                <th> <button onClick={() => this.sortBy(this.domainName)} > Domain </button></th>
-                                <th> <button onClick={() => this.sortBy(this.domainAvailability)} > Status </button> </th>
-                                <th> <button onClick={() => this.sortBy("time")} >zuetzt geprüft</button> </th>
-                                <th> <button onClick={() => this.sortBy()} >hinzugefügt</button> </th>
+                                <th> <button onClick={this.sort}> Domain </button></th>
+                                <th> <button> Status </button> </th>
+                                <th> <button>zuetzt geprüft</button> </th>
+                                <th> <button>hinzugefügt</button> </th>
                                 <th className="symbole">Löschen</th>
                             </tr>
                             {this.renderTableData()}
