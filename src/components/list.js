@@ -90,9 +90,9 @@ class List extends Component{
     }
 
     renderTableData(){
-        return this.state.domains.map(domain => {
+        return this.state.domains.map((domain, index) => {
             return (
-                <Row id={domain.id} url={domain.domainName} availability={domain.domainAvailability} delete={this.deleteEvent.bind(this, index)}/>/>
+                <Row id={domain.id} url={domain.domainName} availability={domain.domainAvailability} delete={this.deleteEvent.bind(this, index)}/>
             )
         })
     }
