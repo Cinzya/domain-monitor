@@ -8,9 +8,17 @@ class List extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            apiKey: "at_XtU8CpRcPmD7AX6RWswtOOK0voVgH",
+            apiKey: "at_zNHM2dR9ZGRlKILyB3uroeWEjBszg",
             domainName: "",
-            domains: []
+            domains: [
+                {
+                    DomainInfo: {
+                        domainName: "google.com",
+                        domainAvailability: "UNAVAILABLE",
+                    },
+                    id: 1,
+
+                }]
         };
         this.renderTableData = this.renderTableData.bind(this);
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
@@ -65,12 +73,12 @@ class List extends Component {
             // Ausgabe in der Konsole der API Response
             .then(responseData => {
                 console.log(responseData);
-                // responseData wird in den State geschrieben
+                // responseData wird in den State geschrieben durch addData
                 this.addData(responseData);
             });
 
         // ?
-        this.domainName = this.state;
+        // this.domainName = this.state;
 
         // Eingabefeld wird geleert
         const newDomain = '';
@@ -79,23 +87,28 @@ class List extends Component {
         });
     }
 
-    //Refresh-Button: muss auf das Datenfeld domain.id aus der Liste hinzugreifen und auf diese die Fetch-Methode anwenden. Status aktualisieren und ggfs. Zeit der letzen Abfrage.
+    //wende fetch-Methode auf domainName aus der Liste an. verwende ggfs. .map?. Status domainAvailability aktualisieren und ggfs. Zeit der letzen Abfrage.
     refreshList() {
-        alert("bla");
-        //fetch-Methode, anstatt this.state.domainName (der in Input-Field festgelegt ist muss dann das aus der Tabelle raus- ist aber in Row gespeichert ??)
-        fetch("https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.domainName, {
-            method: 'GET',
-        })
-            .then(response => {
-                return response.json();
-            })
-            .then(responseData => {
-                console.log(responseData);
+        alert(":-)")
+        console.log(this.state.domains.domainName)
 
-            })
+        // return (domain => {
+        //     fetch("https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.domains.DomainInfo.domainName, {
+        //         method: 'GET',
+        //     })
+        // })
 
 
+        // response wird returnt
+        // .then(response => {
+        //     return response.json();
+        // })
 
+        // response wird auf der Konsole ausgegeben
+        // .then(responseData => {
+        //      console.log(responseData);
+        //      this.addData(responseData);
+        // })
     }
 
 
@@ -106,9 +119,6 @@ class List extends Component {
             )
         })
     }
-
-
-
 
 
     render() {
