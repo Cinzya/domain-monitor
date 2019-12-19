@@ -8,13 +8,14 @@ class List extends Component{
     constructor (props){
         super(props);
         this.state = {
-            apiKey: "at_XtU8CpRcPmD7AX6RWswtOOK0voVgH",
+            apiKey: "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX",
             domainName: "",
             domains: []
         };
         this.renderTableData = this.renderTableData.bind(this);
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
+        this.compare = this.compare.bind(this);
     }
 
     changeDomainHandler(event) {
@@ -24,29 +25,32 @@ class List extends Component{
         });
     }
 
-    // Speichern der aktuellen Zeit für Prüfzeit
-    // !! noch nicht Funktionsfähig !!
-    addTime() {
-        //let today = new Date();
-        //let date = today.getFullYear()+'
-        //let time = today.getHours()+ ":
-        //let dateTime = date+' '+time;
-        //return dateTime
-    };
-
     // Übertragen von Daten in den State
     addData(toAdd){
         // ID ins State geschrieben
         toAdd.id = Math.random();
-        // aktuelle Zeit wird ins State geschrieben
-        //toAdd.checked = this.addTime();
+        // aktuelles Datum + Uhrzeit wird in State geschrieben
+        let tempDate = new Date();
+        let currentDate = tempDate.getDate() + '-' + (tempDate.getMonth()+1) + '-' + tempDate.getFullYear() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes()+':'+ tempDate.getSeconds();
+        toAdd.timeAdded = currentDate;
+        toAdd.timeChecked = currentDate;
         // Daten werden ins State übertragen
         let domains = [toAdd];
-        this.setState({
-            domains: domains
+        // Der aktuelle State domains wird die API Daten hinzugefügt
+        this.setState((state) => {
+            return {domains: state.domains.concat(domains)}
         });
         console.log(this.state.domains)
     }
+
+    //Zeile wird gelöscht
+    deleteEvent = (index) =>{
+       const copyRowArray = Object.assign([], this.state.domains);
+       copyRowArray.splice (index, 1);
+           this.setState({
+               domains : copyRowArray
+           })
+       };
 
     onSubmitHandler(event) {
         event.preventDefault();
@@ -64,7 +68,8 @@ class List extends Component{
             .then(responseData => {
                 console.log(responseData);
                 // responseData wird in den State geschrieben
-                this.addData(responseData);
+                this.addData(responseData.DomainInfo);
+                console.log(this.state.domains);
             });
 
         // ?
@@ -78,13 +83,40 @@ class List extends Component{
     }
 
     renderTableData(){
-        return this.state.domains.map(domain => {
+        return this.state.domains.map((domain, index) => {
             return (
-                <Row id={domain.id} url={domain.DomainInfo.domainName} availability={domain.DomainInfo.domainAvailability}/>
+                <Row
+                    id={domain.id}
+                    url={domain.domainName}
+                    availability={domain.domainAvailability}
+                    checked={domain.timeChecked}
+                    added={domain.timeAdded}
+                    delete={this.deleteEvent.bind(this, index)}/>
             )
         })
     }
 
+    compare(key) {
+        return function innerSort(a, b) {
+            if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+                // property doesn't exist on either object
+                return 0;
+            }
+
+            const varA = (typeof a[key] === 'string')
+                ? a[key].toUpperCase() : a[key];
+            const varB = (typeof b[key] === 'string')
+                ? b[key].toUpperCase() : b[key];
+
+            let comparison = 0;
+            if (varA > varB) {
+                comparison = 1;
+            } else if (varA < varB) {
+                comparison = -1;
+            }
+            return comparison
+        };
+    }
 
     render() {
         return (
@@ -103,10 +135,32 @@ class List extends Component{
                             <tbody>
                             <tr>
                                 <th className="symbole">Einstellungen</th>
-                                <th>Domain</th>
-                                <th>Status</th>
-                                <th>zuletzt geprüft</th>
-                                <th>hinzugefügt</th>
+                                <th> <button onClick={() =>
+                                    {
+                                        const sorted = this.state.domains.sort(this.compare("domainName"));
+                                        this.setState({
+                                            domains: sorted
+                                        });
+                                    }
+                                }> Domain </button></th>
+                                <th> <button onClick={() => {
+                                    const sorted = this.state.domains.sort(this.compare("domainAvailability"));
+                                    this.setState({
+                                        domains: sorted
+                                    });
+                                }}> Status </button> </th>
+                                <th> <button onClick={() => {
+                                    const sorted = this.state.domains.sort(this.compare("timeChecked"));
+                                    this.setState({
+                                        domains: sorted
+                                    });
+                                }}>zuetzt geprüft</button> </th>
+                                <th> <button onClick={() => {
+                                    const sorted = this.state.domains.sort(this.compare("timeAdded"));
+                                    this.setState({
+                                        domains: sorted
+                                    });
+                                }}>hinzugefügt</button> </th>
                                 <th className="symbole">Löschen</th>
                             </tr>
                             {this.renderTableData()}
