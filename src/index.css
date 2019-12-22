@@ -60,6 +60,15 @@ table td, table th {
   empty-cells:show;
 }
 
+/*Sortier buttons in th*/
+th button {
+  color: #ffff;
+  background-color: #5b687b;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+}
+
 /*Statusanzeige
 grün: #1d994f;
 rot: #e24b4b */
@@ -70,7 +79,7 @@ td span {
   -webkit-border-radius: 0.2em;
   -moz-border-radius: 0.2em;
 }
-td .red {
+td .UNAVAILABLE {
   background-color: #e24b4b;
   padding: 8% 19%;
 
@@ -82,10 +91,21 @@ table img {
   height: auto;
 }
 
-/**Damit die Symbole größer werden**/
+table form input{
+  max-width: 50%;
+  height: auto;
+}
+
+/*Damit die Symbole größer werden*/
 .symbole {
   width: 10%;
 }
+
+table form input{
+  max-width: 50%;
+  height: auto;
+}
+
 
 /*Responsive Tabelle*/
 @media all and (max-width: 1100px) {

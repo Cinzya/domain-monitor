@@ -4,7 +4,7 @@ class Intro extends Component {
     render() {
         return(
             <div className="column-left">
-
+               
                 <h2>Was ist ein <br></br> Domain Monitor?</h2>
                 <p>Domain Monitor ist ein Dienst, mit dem Benutzer den Registrierungsstatus von Domains überwachen
                     können. Der Service benachrichtigt Sie (per E-Mail, wenn überwachte Domains kurz vor dem Ablauf
@@ -13,6 +13,7 @@ class Intro extends Component {
                     überwachen möchten, und das Tool benachrichtigt Sie laufend über wichtige Änderungen bei der
                     Registrierung. Dieser Dienst kann sechs wichtige TLDs überwachen: .com, .org,, info, .us, .net und
                     .biz.</p>
+                
 
             </div>
         );
