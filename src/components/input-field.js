@@ -1,19 +1,53 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-import { connect } from 'react-redux';
-import { handleChange } from '../actions/domainInputActions';
+import {connect} from 'react-redux';
 
-export const InputField = (props) => (
-    <form className="domain-eingabe"
-        onSubmit={(event)=> {props.Submit(event)}}>
+import {clearState} from '../actions/clearInputField';
+import {fetch} from "../actions/fetchDomainStatusAction";
+import {changeDomainHandler} from "../actions/getDomainNameAction";
 
-        <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein"
-               value={props.domainName} onChange={props.changeDomain}/>
-        <input type="submit" className="button" value="Hinzufügen"/>
-    </form>
+class InputField extends Component {
+    constructor() {
+        super();
+        this.changeDomain = this.changeDomain.bind(this);
+        this.Submit = this.Submit.bind(this);
+    }
 
-);const mapStateToProps = state => ({
-    domainInput: state.domainInput.value
-});
+    changeDomain(event) {
+        this.props.changeDomainHandler(event);
+    }
 
-export default connect(mapStateToProps, { handleChange })(InputField);
+    Submit(event) {
+        this.props.fetch(event);
+        this.props.clearState();
+    }
+
+    render() {
+        return (
+            <form className="domain-eingabe"
+                  onSubmit={(event) => {
+                      this.Submit(event)
+                  }}>
+
+                <input type="text" id="eingabefeld" placeholder="Geben Sie hier Ihre Wunschdomain ein"
+                       value={this.props.searchTerm} onChange={this.changeDomain}/>
+                <input type="submit" className="button" value="Hinzufügen"/>
+            </form>
+        )
+    }
+}
+
+const mapStateToProps = state => {
+    return state.Domain;
+};
+
+const mapDispatchToProps = {
+    changeDomainHandler,
+    fetch,
+    clearState
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(InputField);

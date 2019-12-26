@@ -1,11 +1,8 @@
-import { combineReducers } from "redux";
-import domainInputReducer from './domainInputReducer';
+import { combineReducers } from 'redux';
+import Domain from './DomainReducer';
 
-//const rootReducer = combineReducers({
-//});
-
-//export default rootReducer
-
-export default combineReducers({
-    domainInput: domainInputReducer
+const allReducers = combineReducers({
+    Domain
 });
+
+export default allReducers;

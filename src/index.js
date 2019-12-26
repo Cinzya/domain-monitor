@@ -7,10 +7,10 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import Store from './store.js';
 
-const StoreInstrance = Store();
+const StoreInstance = Store;
 
 ReactDOM.render(
-    <Provider store ={StoreInstrance}> 
+    <Provider store ={StoreInstance}>
     <App />
     </Provider>,
         document.getElementById('root'));
