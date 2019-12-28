@@ -208,6 +208,10 @@ h1{
   padding-left: 5%;
 }
 
+.loading, .error {
+  color: white;
+}
+
 /** Hinzufügen button**/
 .domain-eingabe .button{
   border-radius: 0.5em;

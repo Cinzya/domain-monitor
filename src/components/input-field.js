@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import {clearState} from '../actions/clearInputField';
-import {fetch} from "../actions/fetchDomainStatusAction";
+import {Domainfetch} from "../actions/fetchDomainStatusAction";
 import {changeDomainHandler} from "../actions/getDomainNameAction";
 
 class InputField extends Component {
@@ -19,7 +19,7 @@ class InputField extends Component {
 
     Submit(event) {
         event.preventDefault();
-        this.props.fetch(this.props.searchTerm, this.props.apiKey);
+        this.props.Domainfetch(this.props.searchTerm, this.props.apiKey);
         this.props.clearState();
     }
 
@@ -45,7 +45,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     changeDomainHandler,
-    fetch,
+    Domainfetch,
     clearState
 };
 

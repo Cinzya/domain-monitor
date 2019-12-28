@@ -16,7 +16,7 @@ export const fetchDomainFailure = error => ({
     payload: { error }
 });
 
-export function fetch(searchTerm, apiKey) {
+export function Domainfetch(searchTerm, apiKey) {
     return dispatch => {
     function addData(toAdd){
         // ID ins State geschrieben
@@ -30,6 +30,7 @@ export function fetch(searchTerm, apiKey) {
         let domains = [toAdd];
         return domains
     }
+    // fetchDomainBegin Action wird ausgelöst
     dispatch(fetchDomainBegin());
     // HTTP Anfrage an API
     return fetch( "https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + apiKey + "&domainName=" + searchTerm, {
@@ -40,8 +41,9 @@ export function fetch(searchTerm, apiKey) {
         })
         // Ausgabe in der Konsole der API Response
         .then(responseData => {
-            // responseData wird in den State geschrieben
+            // fetchDomainSucess Action wird ausgelöst
             dispatch(fetchDomainSuccess(addData(responseData.DomainInfo)));
+            // responseData wird in den State geschrieben
             return addData(responseData.DomainInfo);
         })
         .catch(error => dispatch(fetchDomainFailure(error)));

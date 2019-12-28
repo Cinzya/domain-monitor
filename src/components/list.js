@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { Row } from './row';
-import InputField from './input-field';
 
 import { deleteEvent } from '../actions/deleteDomainAction';
-
-import logo from '../img/logo.svg';
-
 
 class List extends Component{
     constructor (props){
@@ -44,11 +40,11 @@ class List extends Component{
         const { error, loading, domains } = this.props;
 
         if (error) {
-            return <div>Oops! Uns ist ein Fehler unterlaufen.</div>;
+            return <div className="error">Oops! Uns ist ein Fehler unterlaufen. Versuche es später noch ein Mal.</div>;
         }
 
         if (loading) {
-            return <div>Loading...</div>;
+            return <div className="loading">Loading...</div>;
         }
 
         return(
