@@ -1,6 +1,23 @@
-import {GET_STATUS} from './index';
+import {FETCH_DOMAIN_BEGIN} from './index';
+import {FETCH_DOMAIN_SUCCESS} from "./index";
+import {FETCH_DOMAIN_FAILURE} from "./index";
 
-export function fetch(event) {
+export const fetchDomainBegin = () => ({
+    type: FETCH_DOMAIN_BEGIN
+});
+
+export const fetchDomainSuccess = domain => ({
+    type: FETCH_DOMAIN_SUCCESS,
+    payload: { domain }
+});
+
+export const fetchDomainFailure = error => ({
+    type: FETCH_DOMAIN_FAILURE,
+    payload: { error }
+});
+
+export function fetch(searchTerm, apiKey) {
+    return dispatch => {
     function addData(toAdd){
         // ID ins State geschrieben
         toAdd.id = Math.random();
@@ -13,12 +30,9 @@ export function fetch(event) {
         let domains = [toAdd];
         return domains
     }
-    event.preventDefault();
-    // Ausgabe in der Konsole der aktuellen Werte
-    console.log(this.state);
-
+    dispatch(fetchDomainBegin());
     // HTTP Anfrage an API
-    const request = fetch( "https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.props.apiKey + "&domainName=" + this.props.searchTerm, {
+    return fetch( "https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + apiKey + "&domainName=" + searchTerm, {
         method: 'GET',
     })
         .then(response => {
@@ -27,11 +41,9 @@ export function fetch(event) {
         // Ausgabe in der Konsole der API Response
         .then(responseData => {
             // responseData wird in den State geschrieben
+            dispatch(fetchDomainSuccess(addData(responseData.DomainInfo)));
             return addData(responseData.DomainInfo);
-        });
-
-    return {
-        type: GET_STATUS,
-        payload: request
+        })
+        .catch(error => dispatch(fetchDomainFailure(error)));
     }
 }

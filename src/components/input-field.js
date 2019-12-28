@@ -18,7 +18,8 @@ class InputField extends Component {
     }
 
     Submit(event) {
-        this.props.fetch(event);
+        event.preventDefault();
+        this.props.fetch(this.props.searchTerm, this.props.apiKey);
         this.props.clearState();
     }
 
@@ -37,9 +38,10 @@ class InputField extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return state.Domain;
-};
+const mapStateToProps = state => ({
+    searchTerm: state.Domain.searchTerm,
+    apiKey: state.Domain.apiKey
+});
 
 const mapDispatchToProps = {
     changeDomainHandler,

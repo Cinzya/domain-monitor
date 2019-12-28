@@ -41,16 +41,17 @@ class List extends Component{
     }
 
     render() {
+        const { error, loading, domains } = this.props;
+
+        if (error) {
+            return <div>Oops! Uns ist ein Fehler unterlaufen.</div>;
+        }
+
+        if (loading) {
+            return <div>Loading...</div>;
+        }
+
         return(
-            <div className="column-right">
-                <div className="logo">
-                    <h1><span>Domain</span> <span>Monitor</span></h1>
-                    <img src={logo}
-                         alt="Logo"/>
-                </div>
-
-                <InputField />
-
                 <div className="domain-liste">
                     <div className="table-scrollable">
                         <table>
@@ -59,26 +60,26 @@ class List extends Component{
                                 <th className="symbole">Einstellungen</th>
                                 <th> <button onClick={() =>
                                     {
-                                        const sorted = this.props.domains.sort(this.compare("domainName"));
+                                        const sorted = domains.sort(this.compare("domainName"));
                                         this.setState({
                                             domains: sorted
                                         });
                                     }
                                 }> Domain </button></th>
                                 <th> <button onClick={() => {
-                                    const sorted = this.props.domains.sort(this.compare("domainAvailability"));
+                                    const sorted = domains.sort(this.compare("domainAvailability"));
                                     this.setState({
                                         domains: sorted
                                     });
                                 }}> Status </button> </th>
                                 <th> <button onClick={() => {
-                                    const sorted = this.props.domains.sort(this.compare("timeChecked"));
+                                    const sorted = domains.sort(this.compare("timeChecked"));
                                     this.setState({
                                         domains: sorted
                                     });
                                 }}>zuetzt geprüft</button> </th>
                                 <th> <button onClick={() => {
-                                    const sorted = this.props.domains.sort(this.compare("timeAdded"));
+                                    const sorted = domains.sort(this.compare("timeAdded"));
                                     this.setState({
                                         domains: sorted
                                     });
@@ -88,16 +89,17 @@ class List extends Component{
                             {this.renderTableData()}
                             </tbody>
                         </table>
-                    </div>
                 </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return state.Domain;
-};
+const mapStateToProps = state => ({
+    domains: state.Domain.domains,
+    loading: state.Domain.loading,
+    error: state.Domain.error
+});
 
 const mapDispatchToProps = {
     deleteEvent
