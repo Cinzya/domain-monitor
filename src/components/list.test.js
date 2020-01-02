@@ -7,4 +7,5 @@ describe('List', () => {
         const component = shallow(<List debug />);
         expect(component).toMatchSnapshot();
     });
+    
 });
