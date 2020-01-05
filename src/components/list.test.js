@@ -28,6 +28,7 @@ describe('List', () => {
 
 
 describe("deleteEvent", () => {
+<<<<<<< HEAD
   it("should call setState on domains", () => {
     const mockEvent = {
       target: {
@@ -44,5 +45,23 @@ describe("deleteEvent", () => {
     expect(wrapper.state()).toEqual(expected);
   });
 });
+=======
+    it("should call setState on domains", () => {
+      const mockEvent = {
+        target: {
+          name: "domains",
+          value: "test"
+        }
+      };
+      const expected = {
+        apiKey: "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX",
+        domainName: "",
+        domains: "test"
+      };
+      wrapper.instance().deleteEvent(mockEvent);
+      expect(wrapper.state()).toEqual(expected);
+    });
+  });
+>>>>>>> b1ea71969ed7bd0b86a8341d935d14bd95c47d1c
 
 
