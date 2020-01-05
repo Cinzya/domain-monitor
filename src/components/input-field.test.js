@@ -7,4 +7,6 @@ describe('InputField', () => {
         const component = shallow(<InputField debug />);
         expect(component).toMatchSnapshot();
     });
+
+    
 });
