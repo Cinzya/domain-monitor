@@ -40,7 +40,6 @@ class List extends Component{
         this.setState((state) => {
             return {domains: state.domains.concat(domains)}
         });
-        console.log(this.state.domains)
     }
 
     //Zeile wird gelöscht
@@ -55,7 +54,6 @@ class List extends Component{
     onSubmitHandler(event) {
         event.preventDefault();
         // Ausgabe in der Konsole der aktuellen Werte
-        console.log(this.state);
 
         // HTTP Anfrage an API
         fetch( "https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.state.domainName, {
@@ -66,10 +64,8 @@ class List extends Component{
             })
             // Ausgabe in der Konsole der API Response
             .then(responseData => {
-                console.log(responseData);
                 // responseData wird in den State geschrieben
                 this.addData(responseData.DomainInfo);
-                console.log(this.state.domains);
             });
 
         // ?
