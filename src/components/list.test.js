@@ -3,6 +3,10 @@ import {shallow} from "enzyme";
 import List from "./list";
 import ReactDOM from 'react-dom';
 import {cleanup} from '@testing-library/react';
+import toJson from 'enzyme-to-json';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() })
 
 let wrapper;
 let mockSubmit;
@@ -13,9 +17,6 @@ afterEach(cleanup);
 
 
 describe('List', () => {
-    it("should match the snapshot",() => {
-        expect(wrapper).toMatchSnapshot();
-    });
     it('should render correctly in "debug" mode', () => {
         const component = shallow(<List debug />);
         expect(component).toMatchSnapshot();
