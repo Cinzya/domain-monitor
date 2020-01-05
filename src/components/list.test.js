@@ -44,3 +44,5 @@ describe("deleteEvent", () => {
       expect(wrapper.state()).toEqual(expected);
     });
   });
+
+
