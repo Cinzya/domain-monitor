@@ -8,11 +8,13 @@ describe('Navigation', () => {
         expect(component).toMatchSnapshot();
     });
 
+    
     it('should render navigation footer', () => {
         const wrapper = shallow(<Navigation />);
-        const li = wrapper.find('li');
-        const result = li.text();
-        expect(result).toBe('Datenschutz' && 'Impressum');
+        const footer = wrapper.find('footer');
+        const result = footer.text();
+        //.text returns text-content of footer. text-content is Datenschutz+Impressum
+        expect(result).toEqual('Datenschutz' + 'Impressum');
     });
 });
 

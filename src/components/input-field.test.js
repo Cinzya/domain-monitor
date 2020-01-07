@@ -1,6 +1,10 @@
 import React from 'react';
 import { shallow } from "enzyme";
 import { InputField } from "./input-field";
+import {cleanup} from '@testing-library/react';
+
+
+afterEach(cleanup);
 
 describe('InputField', () => {
     it('should render correctly in "debug" mode', () => {
@@ -18,6 +22,14 @@ describe('InputField', () => {
         const realOutput = eingabefeld.find('form.domain-eingabe').html();
         expect(realOutput).toEqual(expectedOutput);
     });
+
+    it('has a button where you can add the domain to your list', () => {
+        const eingabefeld = shallow(<InputField />);
+        const expectedOutput = '<input type="submit" class="button" value="Hinzufügen"/>';
+        const realOutput = eingabefeld.find('.button').html();
+        expect(realOutput).toEqual(expectedOutput);
+
+    })
 
 
 
