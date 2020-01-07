@@ -55,6 +55,7 @@ exports[`List renders correctly 1`] = `
             <th>
                
               <button
+                data-testid="button"
                 onClick={[Function]}
               >
                  Domain 
