@@ -7,4 +7,6 @@ describe('Intro', () => {
         const component = shallow(<Intro debug />);
         expect(component).toMatchSnapshot();
     });
+
+    //it('contains a paragraph that explains how the DomainMonitor works', () => { };
 });
