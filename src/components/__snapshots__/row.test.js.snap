@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Row expect to render Row component 1`] = `ShallowWrapper {}`;
+
 exports[`expect to render Row component 1`] = `ShallowWrapper {}`;
