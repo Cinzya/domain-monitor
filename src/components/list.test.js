@@ -1,8 +1,9 @@
 import React from 'react';
-import {shallow, configure} from "enzyme";
+import { shallow, configure } from "enzyme";
 import List from "./list";
 import { InputField } from "./input-field"; //muss in {} stehen, damit shallow funktioniert?
-import {render, fireEvent, cleanup} from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
+import {onSubmitHandler, compare} from "./list.js";
 
 
 describe('List', () => {
@@ -11,13 +12,21 @@ describe('List', () => {
         expect(component).toMatchSnapshot();
     });
 
-     
-    it('should click submit button', () => {
+
+    it('should call onSubmit-function if you click the submit button', () => {
         const wrapper = shallow(<InputField />);
         const button = wrapper.find('.button');
-        button.simulate('click');
         const input = wrapper.find('input.button').text('Hinzufügen');
+        button.simulate('click');
+        expect(onSubmitHandler).toBeCalled;
     });
 
-    
+    it('should call the compare -> sort function if you click on the button "Domain" in the tables head', () => {
+        const wrapper = shallow(<List />);
+        const button = wrapper.find('button').first();
+        button.simulate('click');
+        expect(compare).toBeCalled;
+    })
+
+
 });
