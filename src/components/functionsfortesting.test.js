@@ -1,6 +1,6 @@
 import {compare} from './functionsfortesting.js';
 
-fdescribe ('compare method', () => {
+describe ('compare method', () => {
 
     it('returns a function', () => {
         expect(typeof compare("name")).toEqual('function');
