@@ -135,7 +135,7 @@ class List extends Component{
                             <tbody>
                             <tr>
                                 <th className="symbole">Einstellungen</th>
-                                <th> <button data-testid="button" onClick={() =>
+                                <th> <button  onClick={() =>
                                     {
                                         const sorted = this.state.domains.sort(this.compare("domainName"));
                                         this.setState({
