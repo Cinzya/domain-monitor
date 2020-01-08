@@ -26,13 +26,6 @@ describe('List', () => {
         const button = wrapper.find('button').first();
         button.simulate('click');
         expect(compare).toBeCalled;
-    })
-    it('should call onSubmit-function if you click the submit button', () => {
-        const wrapper = shallow(<InputField />);
-        const button = wrapper.find('.button');
-        const input = wrapper.find('input.button').text('Hinzufügen');
-        button.simulate('click');
-        expect(onSubmitHandler).toBeCalled;
     });
 
 
