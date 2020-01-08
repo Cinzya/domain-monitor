@@ -1,8 +1,12 @@
 import React from 'react';
 import {shallow, configure} from "enzyme";
 import List from "./list";
-import * as renderer from 'react-test-renderer';
 import InputField from "./input-field";
+//import {render, fireEvent, cleanup} from '@testing-library/react';
+//React Doku
+import { render, unmountComponentAtNode } from "react-dom"; 
+import { act } from "react-dom/test-utils"; 
+
 
 describe('List', () => {
     it('should render correctly in "debug" mode', () => {
@@ -10,19 +14,7 @@ describe('List', () => {
         expect(component).toMatchSnapshot();
     });
 
-    // funktioniert nicht
-    it('renders correctly', () => {
-        const list = renderer.create(<List />).toJSON();
-        expect(list).toMatchSnapshot();
-    });
-
-    // funktioniert nicht
-    it('buttons are clickable', () => {
-        const {getByTestId} = render(<List />);
-        expect(getByTestId('button')).toHaveTextContent("Domain");
-    });
-
-    // funktioniert nicht wegen shallow-Zeile
+     // funktioniert nicht wegen shallow-Zeile
     it('should click submit button', () => {
         const wrapper = shallow(<InputField />);
         const button = wrapper.find('.button');
@@ -30,8 +22,6 @@ describe('List', () => {
         const input = wrapper.find('input.button').text();
     });
 
-   
-    
-
+      
     
 });

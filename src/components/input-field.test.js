@@ -29,7 +29,12 @@ describe('InputField', () => {
         const realOutput = eingabefeld.find('.button').html();
         expect(realOutput).toEqual(expectedOutput);
 
-    })
+    });
+
+    it('renders inputfield with button', () => {
+        const eingabefeld = shallow(<InputField />);
+        expect(eingabefeld.find('input').length).toEqual(2);
+      });
 
 
 
