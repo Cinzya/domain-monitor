@@ -29,4 +29,12 @@ describe('List', () => {
     })
 
 
+    //Warum gibt er ein leeres Objekt aus
+    it("should get domainName", () => {
+        const wrapper = shallow(<List />);
+        const domain = wrapper.find('domainName');
+        expect(domain).toEqual('');
+    });
+
+    
 });
