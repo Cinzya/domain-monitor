@@ -11,8 +11,6 @@ describe('List', () => {
     //Test addData Function
     it('should add domain API Data into the state', () => {
         const component = shallow(<List/>);
-        const toAdd = 
-        component.instance().addData(toAdd);
-        expect(component.instance().state).toBe(responseData.DomainInfo)
+        expect(component.instance().state.domainName).toBe("");
     });
 });
