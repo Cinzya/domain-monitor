@@ -1,5 +1,5 @@
 import React from 'react';
-/* import {shallow} from "enzyme"; */
+import Enzyme, {shallow, render, mount} from 'enzyme';
 import List from "./list";
 
 describe('List', () => {
@@ -9,11 +9,10 @@ describe('List', () => {
     });
 
     //Test addData Function
-    it('should add Domain data to the table', () => {
-        //bei Arrays: expect().toContain();
-        //Async Data:(Minute 24:29): expect.assertions(1);
-        //return functions.fetchUser().then(data => {expect(data.name).toEqual('')})
-        const content = addData(toAdd);
-        expect(content).toEqual(responseData)
+    it('should add domain API Data into the state', () => {
+        const component = shallow(<List/>);
+        const toAdd = 
+        component.instance().addData(toAdd);
+        expect(component.instance().state).toBe(responseData.DomainInfo)
     });
 });
