@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from "enzyme";
 import { InputField } from "./input-field";
+import {onSubmitHandler}  from "./list";
 import {cleanup} from '@testing-library/react';
 
 
@@ -36,7 +37,12 @@ describe('InputField', () => {
         expect(eingabefeld.find('input').length).toEqual(2);
       });
 
-      
+    it('should call onSubmitHandler if button Hinzufügen is clicked', () => {
+        const onSubmit = shallow(<InputField />);
+        const button = onSubmit.find('.button');
+        button.simulate('click');
+        expect(onSubmitHandler).toBeCalled;
+    });
 
 
 
