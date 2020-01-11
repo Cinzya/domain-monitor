@@ -1,8 +1,11 @@
 import React from 'react';
 import {shallow, mount} from "enzyme";
 import List from "./list";
+import Row from "./row";
 import ReactDOM from 'react-dom';
 import {cleanup} from '@testing-library/react';
+import { act } from "react-dom/test-utils";
+import { render} from "react-dom";
 import deleteEvent from './list';
 
 import { configure } from 'enzyme';
@@ -105,10 +108,24 @@ describe('List', () => {
            ]
             };
       wrapper.instance().deleteEvent(mockEvent);
-      expect(wrapper.state()).not.toHaveProperty([ 'id'],1);
       expect(wrapper.state()).toHaveProperty('domains',[ 'id'],2);
       expect(wrapper.state()).toEqual(expected);
     });
+
+    it("should render TableData with prop domainName", () => {
+    act(() => {
+      render(<Row url="google.com" />, container);
+    });
+    expect(container.textContent).toBe("google.com");
+  })
+
+  it("should render TableData with prop domainAvailability", () => {
+    act(() => {
+      render(<Row availability="UNAVAILABLE" />, container);
+    });
+    expect(container.textContent).toBe("UNAVAILABLE");
+  })
+  
 });
 
 
