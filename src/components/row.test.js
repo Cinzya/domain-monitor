@@ -15,6 +15,6 @@ it('is expected to call function delete on click on the mülleimer', () => {
     const muelleimer = component.find('form');
     muelleimer.simulate('click');
     expect(deleteEvent).toBeCalled;
-})
+});
 
 });
