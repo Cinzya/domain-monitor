@@ -16,8 +16,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watch *.js",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test *.js",
+    "eject": "react-scripts eject",
+    "coverage": "npm test -- --coverage --watchAll=false"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,5 +40,22 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "react-test-renderer": "^16.12.0"
+  },
+
+  "jest": {
+    "collectCoverageFrom": [
+      "**/src/**",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/path/to/dir/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 50,
+        "functions": 100,
+        "lines": 100
+      }
+    }
   }
+
 }
