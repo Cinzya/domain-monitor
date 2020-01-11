@@ -3,9 +3,6 @@ import { shallow, configure } from "enzyme";
 import List, {onSubmitHandler, compare}  from "./list";
 import { InputField } from "./input-field";
 
-
-
-
 describe('List', () => {
     it('should render correctly in "debug" mode', () => {
         const component = shallow(<List debug />);
@@ -28,4 +25,10 @@ describe('List', () => {
         expect(compare).toBeCalled;
     });
     
+    it('should fetch data', () => {
+        const wrapper = shallow(< List />;
+        wrapper.update();
+        expect(renderedComponent.state('errorStatus')).toBe('Error fetching groceries'));
+    });
+
 });

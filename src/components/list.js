@@ -54,9 +54,7 @@ class List extends Component {
 
     onSubmitHandler(event) {
         event.preventDefault();
-        // Ausgabe in der Konsole der aktuellen Werte
-        console.log(this.state);
-
+        
         // HTTP Anfrage an API
         fetch("https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.state.domainName, {
             method: 'GET',
@@ -72,9 +70,7 @@ class List extends Component {
                 console.log(this.state.domains);
             });
 
-        // ?
-        this.domainName = this.state;
-
+        
         // Eingabefeld wird geleert
         const newDomain = '';
         this.setState({
