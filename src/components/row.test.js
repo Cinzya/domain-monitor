@@ -5,7 +5,6 @@ import Row from './row';
 import ReactDOM from 'react-dom';
 import {cleanup} from '@testing-library/react';
 import { act } from "react-dom/test-utils";
-import {create} from 'react-test-renderer';
 import deleteEvent from './list';
 
 import { configure } from 'enzyme';

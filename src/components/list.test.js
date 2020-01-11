@@ -1,10 +1,8 @@
 import React from 'react';
 import {shallow, mount} from "enzyme";
 import List from "./list";
-import Row from "./row";
 import ReactDOM from 'react-dom';
 import {cleanup} from '@testing-library/react';
-import { act } from "react-dom/test-utils";
 import deleteEvent from './list';
 
 import { configure } from 'enzyme';
@@ -113,23 +111,5 @@ describe('List', () => {
     });
 });
 
-
-describe("deleteEvent", () => {
-  xit("should call setState on domains", () => {
-    const mockEvent = {
-      target: { 
-        name: "domains",
-        value: "test"
-      }
-    };
-    const expected = {
-      apiKey: "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX",
-      domainName: "",
-      domains: "test"
-    };
-    wrapper.instance().deleteEvent(mockEvent);
-    expect(wrapper.state()).toEqual(expected);
-  });
-});
 
 
