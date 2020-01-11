@@ -20,15 +20,31 @@ describe('List', () => {
 
     it('should call the compare -> sort function if you click on the button "Domain" in the tables head', () => {
         const wrapper = shallow(<List />);
-        const button = wrapper.find('button').first();
+        const button = wrapper.find('#domain');
+        button.simulate('click');
+        expect(compare).toBeCalled;
+    });
+
+    it('should call the compare -> sort function if you click on the button "Status" in the tables head', () => {
+        const wrapper = shallow(<List />);
+        const button = wrapper.find('#status');
         button.simulate('click');
         expect(compare).toBeCalled;
     });
     
-    it('should fetch data', () => {
-        const wrapper = shallow(< List />;
-        wrapper.update();
-        expect(renderedComponent.state('errorStatus')).toBe('Error fetching groceries'));
+    it('should call the compare -> sort function if you click on the button "Zuletzt geprüft" in the tables head', () => {
+        const wrapper = shallow(<List />);
+        const button = wrapper.find('#geprueft');
+        button.simulate('click');
+        expect(compare).toBeCalled;
     });
+
+    it('should call the compare -> sort function if you click on the button "hinzugefügt" in the tables head', () => {
+        const wrapper = shallow(<List />);
+        const button = wrapper.find('#hinzugefuegt');
+        button.simulate('click');
+        expect(compare).toBeCalled;
+    });
+    
 
 });

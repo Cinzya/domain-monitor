@@ -131,26 +131,26 @@ class List extends Component {
                             <tbody>
                                 <tr>
                                     <th className="symbole">Einstellungen</th>
-                                    <th> <button onClick={() => {
+                                    <th> <button id="domain" onClick={() => {
                                         const sorted = this.state.domains.sort(this.compare("domainName"));
                                         this.setState({
                                             domains: sorted
                                         });
                                     }
                                     }> Domain </button></th>
-                                    <th> <button onClick={() => {
+                                    <th> <button id="status" onClick={() => {
                                         const sorted = this.state.domains.sort(this.compare("domainAvailability"));
                                         this.setState({
                                             domains: sorted
                                         });
                                     }}> Status </button> </th>
-                                    <th> <button onClick={() => {
+                                    <th> <button id="geprueft" onClick={() => {
                                         const sorted = this.state.domains.sort(this.compare("timeChecked"));
                                         this.setState({
                                             domains: sorted
                                         });
                                     }}>zuetzt geprüft</button> </th>
-                                    <th> <button onClick={() => {
+                                    <th> <button id="hinzugefuegt" onClick={() => {
                                         const sorted = this.state.domains.sort(this.compare("timeAdded"));
                                         this.setState({
                                             domains: sorted
