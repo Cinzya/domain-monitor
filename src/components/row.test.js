@@ -41,24 +41,6 @@ describe('Row', () => {
         const wrapper = shallow(<Row className="test" text="test"/>)
         expect(wrapper.find("#muell.test")).toHaveLength(1);
     })
-      it("changes value when clicked", () => {
-        const onClick = jest.fn();
-        act(() => {
-          ReactDOM.render(<Row onClick={onClick}/>, container);
-        });
-      
-        const wrapper = container.querySelector("#muell.test");
-        expect(onClick).toHaveBeenCalledTimes(0);
-        //expect(wrapper.state).toBe({props.delete});
-      
-        act(() => {
-          wrapper.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-        });
-      
-        expect(onClick).toHaveBeenCalledTimes(1);
-        //expect(button.innerHTML).toBe("");
-      });
-
       it('should call deleteEvent function wrapper click', () => {
         const row = shallow (<Row />);
         const muelleimer = row.find("form");
