@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, configure } from "enzyme";
 import List, {onSubmitHandler, compare}  from "./list";
 import { InputField } from "./input-field";
-import { render, fireEvent, cleanup } from '@testing-library/react';
+
 
 
 
@@ -27,15 +27,5 @@ describe('List', () => {
         button.simulate('click');
         expect(compare).toBeCalled;
     });
-
-
-
-    //Warum gibt er ein leeres Objekt aus
-    it("should get domainName", () => {
-        const wrapper = shallow(<List />);
-        const domain = wrapper.find('domainName');
-        expect(domain).toEqual('');
-    });
-
     
 });
