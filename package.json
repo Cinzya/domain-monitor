@@ -17,9 +17,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watch *.js",
+    "test": "react-scripts test *.js",
     "eject": "react-scripts eject",
-    "coverage": "npm test -- --coverage"
+    "coverage": "npm test -- --coverage --watchAll=false"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,7 +42,7 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "**/src/**",
+      "**/src/components/**",
       "!<rootDir>/node_modules/",
       "!<rootDir>/path/to/dir/"
     ],
