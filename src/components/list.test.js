@@ -117,6 +117,11 @@ describe('List', () => {
       render(<Row url="google.com" />, container);
     });
     expect(container.textContent).toBe("google.com");
+
+    act(() => {
+      render(<Row url="" />, container);
+    });
+    expect(container.textContent).toBe("");
   })
 
   it("should render TableData with prop domainAvailability", () => {
@@ -124,8 +129,14 @@ describe('List', () => {
       render(<Row availability="UNAVAILABLE" />, container);
     });
     expect(container.textContent).toBe("UNAVAILABLE");
+
+    act(() => {
+      render(<Row availability="AVAILABLE" />, container);
+    });
+    expect(container.textContent).toBe("AVAILABLE");
+    
   })
-  
+
 });
 
 
