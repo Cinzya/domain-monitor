@@ -3,16 +3,20 @@ import zahnrad from "../img/zahnrad.svg";
 import muelleimer from "../img/muelleimer.svg";
 
 export const Row = (props) => (
+    <div>
     <tr key={props.id}>
         <td><img src={zahnrad} alt="Zahnradbutton für Einstellungen"/></td>
-        <td>{props.url}</td>
+        <td id= "url">{props.url}</td>
         <td><span className={props.availability}>{props.availability}</span></td>
-        <td>{props.checked}</td>
-        <td>{props.added}</td>
+        <td id= "checked">{props.checked}</td>
+        <td id="added">{props.added}</td>
         <td>
-            <form>
-                <input onClick={props.delete} type="image" src={muelleimer} alt="Mülleimer als Button"/>
+            <form >
+                <input id="muell" className="test" onClick={props.delete} type="image" src={muelleimer} alt="Mülleimer als Button"/>
             </form>
             </td>
     </tr>
+    </div>
 );
+export default Row;
+

@@ -4,9 +4,12 @@
 /node_modules
 /.pnp
 .pnp.js
+stryker.log
 
 # testing
 /coverage
+.stryker-tmp
+
 
 # production
 /build
