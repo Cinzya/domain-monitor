@@ -3,9 +3,6 @@ import { shallow, configure } from "enzyme";
 import List, {onSubmitHandler, compare}  from "./list";
 import { InputField } from "./input-field";
 
-
-
-
 describe('List', () => {
     it('should render correctly in "debug" mode', () => {
         const component = shallow(<List debug />);
@@ -23,9 +20,31 @@ describe('List', () => {
 
     it('should call the compare -> sort function if you click on the button "Domain" in the tables head', () => {
         const wrapper = shallow(<List />);
-        const button = wrapper.find('button').first();
+        const button = wrapper.find('#domain');
+        button.simulate('click');
+        expect(compare).toBeCalled;
+    });
+
+    it('should call the compare -> sort function if you click on the button "Status" in the tables head', () => {
+        const wrapper = shallow(<List />);
+        const button = wrapper.find('#status');
         button.simulate('click');
         expect(compare).toBeCalled;
     });
     
+    it('should call the compare -> sort function if you click on the button "Zuletzt geprüft" in the tables head', () => {
+        const wrapper = shallow(<List />);
+        const button = wrapper.find('#geprueft');
+        button.simulate('click');
+        expect(compare).toBeCalled;
+    });
+
+    it('should call the compare -> sort function if you click on the button "hinzugefügt" in the tables head', () => {
+        const wrapper = shallow(<List />);
+        const button = wrapper.find('#hinzugefuegt');
+        button.simulate('click');
+        expect(compare).toBeCalled;
+    });
+    
+
 });
