@@ -1,10 +1,17 @@
 import React from 'react';
-import {shallow} from "enzyme";
+import {shallow, mount} from "enzyme";
 import List from "./list";
+import Row from "./row";
 import ReactDOM from 'react-dom';
 import {cleanup} from '@testing-library/react';
 import { act } from "react-dom/test-utils";
-import toJson from 'enzyme-to-json';
+import deleteEvent from './list';
+
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+configure({ adapter: new Adapter() });
+
+
 
 let container = 0;
 let wrapper;
@@ -33,11 +40,82 @@ describe('List', () => {
     const div = document.createElement("div");
     ReactDOM.render(<List/>, div)
     })
+
+    it("removes an item", () => {
+      const wrapper = mount (<List/>);
+     wrapper.setState({
+        domains: [
+          {
+            DomainInfo: {
+              domainName: "bar.com", 
+              domainAvailability: "UNAVAILABLE"
+          },
+            id: 1,
+         },
+          {
+            DomainInfo: {
+              domainName: "google.com", 
+              domainAvailability: "UNAVAILABLE"
+          },
+           id: 2,
+         }
+       ]
+      })
+        wrapper.update();
+        expect(wrapper.state()).toHaveProperty('domains',[ 'id'],1);
+        expect(wrapper.state()).toHaveProperty('domains',[ 'id'],2);
+
+        const mockEvent = { 
+              domains: [
+                {
+                  DomainInfo: {
+                    domainName: "bar.com", 
+                    domainAvailability: "UNAVAILABLE"
+                },
+                  id: 1,
+               },
+                {
+                  DomainInfo: {
+                    domainName: "google.com", 
+                    domainAvailability: "UNAVAILABLE"
+                },
+                 id: 2,
+               }
+             ],
+              copyRowArray: [
+                {
+                  DomainInfo: {
+                    domainName: "google.com", 
+                    domainAvailability: "UNAVAILABLE"
+                },
+                 id: 2,
+               }
+             ]
+          };
+
+          const expected = {
+            "apiKey": "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX", 
+            "domainName": "", 
+            domains: [
+              {
+                DomainInfo: {
+                  domainName: "google.com", 
+                  domainAvailability: "UNAVAILABLE"
+              },
+               id: 2,
+             }
+           ]
+            };
+      wrapper.instance().deleteEvent(mockEvent);
+      expect(wrapper.state()).not.toHaveProperty([ 'id'],1);
+      expect(wrapper.state()).toHaveProperty('domains',[ 'id'],2);
+      expect(wrapper.state()).toEqual(expected);
+    });
 });
 
 
 describe("deleteEvent", () => {
-  it("should call setState on domains", () => {
+  xit("should call setState on domains", () => {
     const mockEvent = {
       target: { 
         name: "domains",

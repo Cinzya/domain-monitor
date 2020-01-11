@@ -1,12 +1,17 @@
 import { shallow } from 'enzyme';
+
 import React from 'react';
 import Row from './row';
 import ReactDOM from 'react-dom';
 import {cleanup} from '@testing-library/react';
-import { render} from "react-dom";
 import { act } from "react-dom/test-utils";
 import {create} from 'react-test-renderer';
 import deleteEvent from './list';
+
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+configure({ adapter: new Adapter() });
+
 
 
 let container = null;
@@ -56,8 +61,8 @@ describe('Row', () => {
       });
 
       it('should call deleteEvent function wrapper click', () => {
-        const wrapper = shallow (<Row />);
-        const muelleimer = wrapper.find("form");
+        const row = shallow (<Row />);
+        const muelleimer = row.find("form");
         muelleimer.simulate("click");
         expect(deleteEvent).tobeCalled;
       })
