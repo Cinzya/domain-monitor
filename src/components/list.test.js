@@ -173,14 +173,12 @@ describe('List', () => {
     
   })
 
-    //Test addData Function
+    //Tests state after setting new state
     it('should add domain API Data into the state', () => {
       const component = mount(<List />);
       const instance = component.instance();
-      //Leerer State
-      /* expect(instance.state.domainName).toBe(""); */
-  
-      instance.setState(() => {
+     
+      instance.setState({
         domains: [
           {
             DomainInfo: {
@@ -199,8 +197,22 @@ describe('List', () => {
         ]
       })
   
-      instance.forceUpdate();
-      expect(instance.state).toBe()
+      expect(instance.state.domains).toStrictEqual( [
+        {
+          DomainInfo: {
+            domainName: "bar.com",
+            domainAvailability: "UNAVAILABLE"
+          },
+          id: 1,
+        },
+        {
+          DomainInfo: {
+            domainName: "google.com",
+            domainAvailability: "UNAVAILABLE"
+          },
+          id: 2,
+        }
+      ] )
     });
 
 });
