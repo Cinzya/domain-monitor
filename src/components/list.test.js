@@ -228,6 +228,12 @@ describe('List', () => {
    expect(wrapper.state.domains.length).toBe(0);
 });
 
+it('should find result via fetch', () => {
+  return fetch('http://www.google.com')
+    .then(() => console.log('Success'))
+    .catch((err) => console.log('Error!!!!' + err));
+
+});
   
 
 });
