@@ -1,4 +1,4 @@
-import { compare } from './functionsfortesting.js';
+import { compare } from './comparefortesting';
 
 describe('compare method', () => {
 
