@@ -236,4 +236,15 @@ describe('List', () => {
    expect(wrapper.state.domains.length).toBe(0);
 });
 
+<<<<<<< HEAD
+=======
+it('should find result via fetch', () => {
+  return fetch('http://www.google.com')
+    .then(() => console.log('Success'))
+    .catch((err) => console.log('Error!!!!' + err));
+
+});
+  
+
+>>>>>>> 72d0acae8be97c450d3801e2ed7fda97786e61f5
 });
