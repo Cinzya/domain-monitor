@@ -173,47 +173,55 @@ describe('List', () => {
 
   })
 
-  //Tests state after setting new state
-  it('should add domain API Data into the state', () => {
-    const component = mount(<List />);
-    const instance = component.instance();
-
-    instance.setState({
-      domains: [
-        {
-          DomainInfo: {
-            domainName: "bar.com",
-            domainAvailability: "UNAVAILABLE"
+      //Tests setState in addData function
+      it('should add new info to the state', () => {
+        const component = mount(<List />);
+        const instance = component.instance();
+       
+        instance.setState({
+          domains: [
+            {
+              DomainInfo: {
+                domainName: "bar.com",
+                domainAvailability: "UNAVAILABLE"
+              },
+              id: 1,
+            },
+            {
+              DomainInfo: {
+                domainName: "google.com",
+                domainAvailability: "UNAVAILABLE"
+              },
+              id: 2,
+            }
+          ]
+        })
+    
+        expect(instance.state.domains).toStrictEqual( [
+          {
+            DomainInfo: {
+              domainName: "bar.com",
+              domainAvailability: "UNAVAILABLE"
+            },
+            id: 1,
           },
-          id: 1,
-        },
-        {
-          DomainInfo: {
-            domainName: "google.com",
-            domainAvailability: "UNAVAILABLE"
-          },
-          id: 2,
-        }
-      ]
-    })
-
-    expect(instance.state.domains).toStrictEqual([
-      {
-        DomainInfo: {
-          domainName: "bar.com",
-          domainAvailability: "UNAVAILABLE"
-        },
-        id: 1,
-      },
-      {
-        DomainInfo: {
-          domainName: "google.com",
-          domainAvailability: "UNAVAILABLE"
-        },
-        id: 2,
-      }
-    ])
-  });
+          {
+            DomainInfo: {
+              domainName: "google.com",
+              domainAvailability: "UNAVAILABLE"
+            },
+            id: 2,
+          }
+        ] )
+      });
+  
+      it('addData should update state.domains', () =>  {
+          const wrapper = shallow(<List/>).instance();
+          
+          wrapper.addData({ toAdd: '' });
+          
+          expect(wrapper.state.domains).toBe();
+      })
 
   it('should call on Submit Handler', () => {
     const wrapper = shallow(<List />).instance();
@@ -227,7 +235,5 @@ describe('List', () => {
     const wrapper = shallow(<List />).instance();
    expect(wrapper.state.domains.length).toBe(0);
 });
-
-  
 
 });
