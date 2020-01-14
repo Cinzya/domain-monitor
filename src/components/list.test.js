@@ -173,6 +173,20 @@ describe('List', () => {
 
   })
 
+  it("should render TableData with prop checked", () => {
+    act(() => {
+      render(<Row checked="14-1-2020 15:43:33" />, container);
+    });
+    expect(container.textContent).toBe("14-1-2020 15:43:33");
+  })
+
+  it("should render TableData with prop added", () => {
+    act(() => {
+      render(<Row checked="14-1-2020 15:43:36" />, container);
+    });
+    expect(container.textContent).toBe("14-1-2020 15:43:36");
+  })
+
       //Tests setState in addData function
       it('should add new info to the state', () => {
         const component = mount(<List />);
