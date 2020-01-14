@@ -182,7 +182,7 @@ describe('List', () => {
 
   it("should render TableData with prop added", () => {
     act(() => {
-      render(<Row checked="14-1-2020 15:43:36" />, container);
+      render(<Row added="14-1-2020 15:43:36" />, container);
     });
     expect(container.textContent).toBe("14-1-2020 15:43:36");
   })
