@@ -4,8 +4,8 @@ import logo from '../img/logo.svg';
 import { Row } from './row';
 import { InputField } from './input-field';
 
-class List extends Component{
-    constructor (props){
+class List extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             apiKey: "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX",
@@ -26,37 +26,36 @@ class List extends Component{
     }
 
     // Übertragen von Daten in den State
-    addData(toAdd){
+    addData(toAdd) {
         // ID ins State geschrieben
         toAdd.id = Math.random();
         // aktuelles Datum + Uhrzeit wird in State geschrieben
         let tempDate = new Date();
-        let currentDate = tempDate.getDate() + '-' + (tempDate.getMonth()+1) + '-' + tempDate.getFullYear() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes()+':'+ tempDate.getSeconds();
+        let currentDate = tempDate.getDate() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getFullYear() + ' ' + tempDate.getHours() + ':' + tempDate.getMinutes() + ':' + tempDate.getSeconds();
         toAdd.timeAdded = currentDate;
         toAdd.timeChecked = currentDate;
         // Daten werden ins State übertragen
         let domains = [toAdd];
         // Der aktuelle State domains wird die API Daten hinzugefügt
         this.setState((state) => {
-            return {domains: state.domains.concat(domains)}
+            return { domains: state.domains.concat(domains) }
         });
     }
 
     //Zeile wird gelöscht
-    deleteEvent = (index) =>{
-       const copyRowArray = Object.assign([], this.state.domains);
-       copyRowArray.splice (index, 1);
-           this.setState({
-               domains : copyRowArray
-           })
-       };
+    deleteEvent = (index) => {
+        const copyRowArray = Object.assign([], this.state.domains);
+        copyRowArray.splice(index, 1);
+        this.setState({
+            domains: copyRowArray
+        })
+    };
 
     onSubmitHandler(event) {
         event.preventDefault();
         
-
         // HTTP Anfrage an API
-        fetch( "https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.state.domainName, {
+        fetch("https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.state.domainName, {
             method: 'GET',
         })
             .then(response => {
@@ -68,7 +67,6 @@ class List extends Component{
                 this.addData(responseData.DomainInfo);
             });
 
-
         // Eingabefeld wird geleert
         const newDomain = '';
         this.setState({
@@ -76,7 +74,7 @@ class List extends Component{
         });
     }
 
-    renderTableData(){
+    renderTableData() {
         return this.state.domains.map((domain, index) => {
             return (
                 <Row
@@ -85,7 +83,7 @@ class List extends Component{
                     availability={domain.domainAvailability}
                     checked={domain.timeChecked}
                     added={domain.timeAdded}
-                    delete={this.deleteEvent.bind(this, index)}/>
+                    delete={this.deleteEvent.bind(this, index)} />
             )
         })
     }
@@ -118,46 +116,45 @@ class List extends Component{
                 <div className="logo">
                     <h1><span>Domain</span> <span>Monitor</span></h1>
                     <img src={logo}
-                         alt="Logo"/>
+                        alt="Logo" />
                 </div>
 
-                <InputField domainName={this.state.domainName} changeDomain={this.changeDomainHandler} Submit={this.onSubmitHandler}/>
+                <InputField domainName={this.state.domainName} changeDomain={this.changeDomainHandler} Submit={this.onSubmitHandler} />
 
                 <div className="domain-liste">
                     <div className="table-scrollable">
                         <table>
                             <tbody>
-                            <tr>
-                                <th className="symbole">Einstellungen</th>
-                                <th> <button onClick={() =>
-                                    {
+                                <tr>
+                                    <th className="symbole">Einstellungen</th>
+                                    <th> <button id="domain" onClick={() => {
                                         const sorted = this.state.domains.sort(this.compare("domainName"));
                                         this.setState({
                                             domains: sorted
                                         });
                                     }
-                                }> Domain </button></th>
-                                <th> <button onClick={() => {
-                                    const sorted = this.state.domains.sort(this.compare("domainAvailability"));
-                                    this.setState({
-                                        domains: sorted
-                                    });
-                                }}> Status </button> </th>
-                                <th> <button onClick={() => {
-                                    const sorted = this.state.domains.sort(this.compare("timeChecked"));
-                                    this.setState({
-                                        domains: sorted
-                                    });
-                                }}>zuetzt geprüft</button> </th>
-                                <th> <button onClick={() => {
-                                    const sorted = this.state.domains.sort(this.compare("timeAdded"));
-                                    this.setState({
-                                        domains: sorted
-                                    });
-                                }}>hinzugefügt</button> </th>
-                                <th className="symbole">Löschen</th>
-                            </tr>
-                            {this.renderTableData()}
+                                    }> Domain </button></th>
+                                    <th> <button id="status" onClick={() => {
+                                        const sorted = this.state.domains.sort(this.compare("domainAvailability"));
+                                        this.setState({
+                                            domains: sorted
+                                        });
+                                    }}> Status </button> </th>
+                                    <th> <button id="geprueft" onClick={() => {
+                                        const sorted = this.state.domains.sort(this.compare("timeChecked"));
+                                        this.setState({
+                                            domains: sorted
+                                        });
+                                    }}>zuetzt geprüft</button> </th>
+                                    <th> <button id="hinzugefuegt" onClick={() => {
+                                        const sorted = this.state.domains.sort(this.compare("timeAdded"));
+                                        this.setState({
+                                            domains: sorted
+                                        });
+                                    }}>hinzugefügt</button> </th>
+                                    <th className="symbole">Löschen</th>
+                                </tr>
+                                {this.renderTableData()}
                             </tbody>
                         </table>
                     </div>
