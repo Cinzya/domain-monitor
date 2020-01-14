@@ -220,7 +220,7 @@ describe('List', () => {
           
           wrapper.addData({ toAdd: '' });
           
-          expect(wrapper.state.domains).toBe();
+          expect(wrapper.state.domains).toEqual(expect.anything());
       })
 
   it('should call on Submit Handler', () => {
