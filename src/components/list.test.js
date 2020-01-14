@@ -240,7 +240,6 @@ it('should find result via fetch', () => {
   return fetch('http://www.google.com')
     .then(() => console.log('Success'))
     .catch((err) => console.log('Error!!!!' + err));
-
 });
   
 
