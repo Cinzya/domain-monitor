@@ -267,3 +267,9 @@ h2{
 .error, .loading {
   color: white;
 }
+
+.loading {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}

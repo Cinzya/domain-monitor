@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../img/logo.svg';
+import Spinner from '../img/Spinner-1s-200px.gif';
 
 import { Row } from './row';
 import { InputField } from './input-field';
@@ -186,6 +187,7 @@ class List extends Component {
 
                     <InputField domainName={this.state.domainName} changeDomain={this.changeDomainHandler} Submit={this.onSubmitHandler} />
                     <div className="loading">
+                        <img src={Spinner} alt="Ladescreen"/>
                         <p>Loading...</p>
                     </div>
                 </div>
