@@ -10,7 +10,9 @@ class List extends Component {
         this.state = {
             apiKey: "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX",
             domainName: "",
-            domains: []
+            domains: [],
+            loading: false,
+            error: false
         };
         this.renderTableData = this.renderTableData.bind(this);
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
@@ -53,7 +55,9 @@ class List extends Component {
 
     onSubmitHandler(event) {
         event.preventDefault();
-        
+        this.setState({
+            loading: true
+        });
         // HTTP Anfrage an API
         fetch("https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.state.domainName, {
             method: 'GET',
@@ -61,11 +65,18 @@ class List extends Component {
             .then(response => {
                 return response.json();
             })
-            
             .then(responseData => {
                 // responseData wird in den State geschrieben
                 this.addData(responseData.DomainInfo);
-            });
+                this.setState({
+                    loading: false
+                })
+            })
+            .catch(error => this.setState({
+                error: true,
+                loading: false
+            }));
+
 
         // Eingabefeld wird geleert
         const newDomain = '';
@@ -111,20 +122,21 @@ class List extends Component {
     }
 
     render() {
-        return (
-            <div className="column-right">
-                <div className="logo">
-                    <h1><span>Domain</span> <span>Monitor</span></h1>
-                    <img src={logo}
-                        alt="Logo" />
-                </div>
+        if(!this.state.loading && !this.state.error) {
+            return (
+                <div className="column-right">
+                    <div className="logo">
+                        <h1><span>Domain</span> <span>Monitor</span></h1>
+                        <img src={logo}
+                             alt="Logo" />
+                    </div>
 
-                <InputField domainName={this.state.domainName} changeDomain={this.changeDomainHandler} Submit={this.onSubmitHandler} />
+                    <InputField domainName={this.state.domainName} changeDomain={this.changeDomainHandler} Submit={this.onSubmitHandler} />
 
-                <div className="domain-liste">
-                    <div className="table-scrollable">
-                        <table>
-                            <tbody>
+                    <div className="domain-liste">
+                        <div className="table-scrollable">
+                            <table>
+                                <tbody>
                                 <tr>
                                     <th className="symbole">Einstellungen</th>
                                     <th> <button id="domain" onClick={() => {
@@ -155,12 +167,49 @@ class List extends Component {
                                     <th className="symbole">Löschen</th>
                                 </tr>
                                 {this.renderTableData()}
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-        );
+            );
+        }
+
+        if(this.state.loading) {
+            return (
+                <div className="column-right">
+                    <div className="logo">
+                        <h1><span>Domain</span> <span>Monitor</span></h1>
+                        <img src={logo}
+                             alt="Logo" />
+                    </div>
+
+                    <InputField domainName={this.state.domainName} changeDomain={this.changeDomainHandler} Submit={this.onSubmitHandler} />
+                    <div className="loading">
+                        <p>Loading...</p>
+                    </div>
+                </div>
+            )
+        }
+
+        if(this.state.error) {
+            return (
+                <div className="column-right">
+                    <div className="logo">
+                        <h1><span>Domain</span> <span>Monitor</span></h1>
+                        <img src={logo}
+                             alt="Logo" />
+                    </div>
+
+                    <InputField domainName={this.state.domainName} changeDomain={this.changeDomainHandler} Submit={this.onSubmitHandler} />
+                    <div className="error">
+                        <p>Oops! Uns ist ein Fehler unterlaufen. Versuche es später noch einmal.</p>
+                    </div>
+                </div>
+            )
+        }
+
+
     }
 }
 
