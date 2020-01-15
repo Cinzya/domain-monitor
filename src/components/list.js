@@ -57,7 +57,8 @@ class List extends Component {
     onSubmitHandler(event) {
         event.preventDefault();
         this.setState({
-            loading: true
+            loading: true,
+            error: false
         });
         // HTTP Anfrage an API
         fetch("https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.state.domainName, {
