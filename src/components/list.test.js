@@ -98,14 +98,18 @@ describe('List', () => {
         {
           DomainInfo: {
             domainName: "google.com",
-            domainAvailability: "UNAVAILABLE"
+            domainAvailability: "UNAVAILABLE",
+            
           },
           id: 2,
+
         }
-      ]
+      ],
+      error: false,
+      loading: false
     };
     wrapper.instance().deleteEvent(mockEvent);
-    expect(wrapper.state()).toHaveProperty('domains', ['id'], 2);
+    expect(wrapper.state()).toHaveProperty('domains', ['id'], 2,);
     expect(wrapper.state()).toEqual(expected);
   });
 
