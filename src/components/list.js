@@ -18,7 +18,7 @@ class List extends Component {
         this.renderTableData = this.renderTableData.bind(this);
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
-        this.compare = this.compare.bind(this);
+        this.compare = this.compare(this)
     }
 
     changeDomainHandler(event) {
