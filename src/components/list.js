@@ -4,6 +4,7 @@ import Spinner from '../img/Spinner-1s-200px.gif';
 
 import { Row } from './row';
 import { InputField } from './input-field';
+import { compare } from './compare_func';
 
 class List extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class List extends Component {
         this.renderTableData = this.renderTableData.bind(this);
         this.changeDomainHandler = this.changeDomainHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
-        this.compare = this.compare.bind(this);
+        compare();
     }
 
     changeDomainHandler(event) {
