@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logo from '../img/logo.svg';
 import Spinner from '../img/Spinner-1s-200px.gif';
 
-import { Row } from './row';
-import { InputField } from './input-field';
+import {Row} from './row';
+import {InputField} from './input-field';
 
 class List extends Component {
     constructor(props) {
@@ -34,14 +34,20 @@ class List extends Component {
         toAdd.id = Math.random();
         // aktuelles Datum + Uhrzeit wird in State geschrieben
         let tempDate = new Date();
-        let currentDate = tempDate.getDate() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getFullYear() + ' ' + tempDate.getHours() + ':' + tempDate.getMinutes() + ':' + tempDate.getSeconds();
+        let currentDate =
+            tempDate.getDate() + '-'
+            + (tempDate.getMonth() + 1) + '-'
+            + tempDate.getFullYear() + ' '
+            + tempDate.getHours() + ':'
+            + tempDate.getMinutes() + ':'
+            + tempDate.getSeconds();
         toAdd.timeAdded = currentDate;
         toAdd.timeChecked = currentDate;
         // Daten werden ins State übertragen
         let domains = [toAdd];
         // Der aktuelle State domains wird die API Daten hinzugefügt
         this.setState((state) => {
-            return { domains: state.domains.concat(domains) }
+            return {domains: state.domains.concat(domains)}
         });
     }
 
@@ -56,12 +62,16 @@ class List extends Component {
 
     onSubmitHandler(event) {
         event.preventDefault();
+        //Loading Animation
         this.setState({
             loading: true,
             error: false
         });
         // HTTP Anfrage an API
-        fetch("https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey=" + this.state.apiKey + "&domainName=" + this.state.domainName, {
+        fetch("https://domain-availability-api.whoisxmlapi.com/api/v1?apiKey="
+            + this.state.apiKey
+            + "&domainName="
+            + this.state.domainName, {
             method: 'GET',
         })
             .then(response => {
@@ -74,6 +84,7 @@ class List extends Component {
                     loading: false
                 })
             })
+            //Error Anzeige
             .catch(error => this.setState({
                 error: true,
                 loading: false
@@ -96,7 +107,7 @@ class List extends Component {
                     availability={domain.domainAvailability}
                     checked={domain.timeChecked}
                     added={domain.timeAdded}
-                    delete={this.deleteEvent.bind(this, index)} />
+                    delete={this.deleteEvent.bind(this, index)}/>
             )
         })
     }
@@ -124,16 +135,21 @@ class List extends Component {
     }
 
     render() {
-        if(!this.state.loading && !this.state.error) {
+        const { loading, error } = this.state;
+        if (!loading && !error) {
             return (
                 <div className="column-right">
                     <div className="logo">
                         <h1><span>Domain</span> <span>Monitor</span></h1>
                         <img src={logo}
-                             alt="Logo" />
+                             alt="Logo"/>
                     </div>
 
-                    <InputField domainName={this.state.domainName} changeDomain={this.changeDomainHandler} Submit={this.onSubmitHandler} />
+                    <InputField
+                        domainName={this.state.domainName}
+                        changeDomain={this.changeDomainHandler}
+                        Submit={this.onSubmitHandler}
+                    />
 
                     <div className="domain-liste">
                         <div className="table-scrollable">
@@ -141,31 +157,55 @@ class List extends Component {
                                 <tbody>
                                 <tr>
                                     <th className="symbole">Einstellungen</th>
-                                    <th> <button id="domain" onClick={() => {
-                                        const sorted = this.state.domains.sort(this.compare("domainName"));
-                                        this.setState({
-                                            domains: sorted
-                                        });
-                                    }
-                                    }> Domain </button></th>
-                                    <th> <button id="status" onClick={() => {
-                                        const sorted = this.state.domains.sort(this.compare("domainAvailability"));
-                                        this.setState({
-                                            domains: sorted
-                                        });
-                                    }}> Status </button> </th>
-                                    <th> <button id="geprueft" onClick={() => {
-                                        const sorted = this.state.domains.sort(this.compare("timeChecked"));
-                                        this.setState({
-                                            domains: sorted
-                                        });
-                                    }}>zuetzt geprüft</button> </th>
-                                    <th> <button id="hinzugefuegt" onClick={() => {
-                                        const sorted = this.state.domains.sort(this.compare("timeAdded"));
-                                        this.setState({
-                                            domains: sorted
-                                        });
-                                    }}>hinzugefügt</button> </th>
+                                    <th>
+                                        <button id="domain" onClick={() => {
+                                            const sorted = this.state.domains.sort(
+                                                this.compare("domainName")
+                                            );
+                                            this.setState({
+                                                domains: sorted
+                                            });
+                                        }
+                                        }>
+                                            Domain
+                                        </button>
+                                    </th>
+                                    <th>
+                                        <button id="status" onClick={() => {
+                                            const sorted = this.state.domains.sort(
+                                                this.compare("domainAvailability")
+                                            );
+                                            this.setState({
+                                                domains: sorted
+                                            });
+                                        }}>
+                                            Status
+                                        </button>
+                                    </th>
+                                    <th>
+                                        <button id="geprueft" onClick={() => {
+                                            const sorted = this.state.domains.sort(
+                                                this.compare("timeChecked")
+                                            );
+                                            this.setState({
+                                                domains: sorted
+                                            });
+                                        }}>
+                                            zuetzt geprüft
+                                        </button>
+                                    </th>
+                                    <th>
+                                        <button id="hinzugefuegt" onClick={() => {
+                                            const sorted = this.state.domains.sort(
+                                                this.compare("timeAdded")
+                                            );
+                                            this.setState({
+                                                domains: sorted
+                                            });
+                                        }}>
+                                            hinzugefügt
+                                        </button>
+                                    </th>
                                     <th className="symbole">Löschen</th>
                                 </tr>
                                 {this.renderTableData()}
@@ -177,16 +217,20 @@ class List extends Component {
             );
         }
 
-        if(this.state.loading) {
+        if (loading) {
             return (
                 <div className="column-right">
                     <div className="logo">
                         <h1><span>Domain</span> <span>Monitor</span></h1>
                         <img src={logo}
-                             alt="Logo" />
+                             alt="Logo"/>
                     </div>
 
-                    <InputField domainName={this.state.domainName} changeDomain={this.changeDomainHandler} Submit={this.onSubmitHandler} />
+                    <InputField
+                        domainName={this.state.domainName}
+                        changeDomain={this.changeDomainHandler}
+                        Submit={this.onSubmitHandler}
+                    />
                     <div className="loading">
                         <img src={Spinner} alt="Ladescreen"/>
                         <p>Loading...</p>
@@ -195,16 +239,21 @@ class List extends Component {
             )
         }
 
-        if(this.state.error) {
+        if (error) {
             return (
                 <div className="column-right">
                     <div className="logo">
                         <h1><span>Domain</span> <span>Monitor</span></h1>
                         <img src={logo}
-                             alt="Logo" />
+                             alt="Logo"/>
                     </div>
 
-                    <InputField domainName={this.state.domainName} changeDomain={this.changeDomainHandler} Submit={this.onSubmitHandler} />
+                    <InputField
+                        domainName={this.state.domainName}
+                        changeDomain={this.changeDomainHandler}
+                        Submit={this.onSubmitHandler}
+                    />
+
                     <div className="error">
                         <p>Oops! Uns ist ein Fehler unterlaufen. Versuche es später noch einmal.</p>
                     </div>
