@@ -9,7 +9,7 @@ class List extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            apiKey: "at_CTh44UQbAh9qDuN0CC7mv4UYGimLX",
+            apiKey: "at_2CaxXPeBry5J0unwf7wfj9pQaaURI",
             domainName: "",
             domains: [],
             loading: false,
