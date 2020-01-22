@@ -62,6 +62,7 @@ class List extends Component {
 
     onSubmitHandler(event) {
         event.preventDefault();
+        //Loading Animation
         this.setState({
             loading: true,
             error: false
@@ -83,6 +84,7 @@ class List extends Component {
                     loading: false
                 })
             })
+            //Error Anzeige
             .catch(error => this.setState({
                 error: true,
                 loading: false
