@@ -5,11 +5,13 @@ import Spinner from '../img/Spinner-1s-200px.gif';
 import {Row} from './row';
 import {InputField} from './input-field';
 
+import {apiKey} from '../config.json';
+
 class List extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            apiKey: "at_2CaxXPeBry5J0unwf7wfj9pQaaURI",
+            apiKey: apiKey,
             domainName: "",
             domains: [],
             loading: false,
