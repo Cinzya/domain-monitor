@@ -1,4 +1,7 @@
+![grafik](https://user-images.githubusercontent.com/54354036/119438165-dfb8d400-bd1f-11eb-84e2-5c820d5a8d21.png)
+
 # domain-monitor
+The domain monitor is a React web app to check availability of one or multiple domains using the [WHOIS](https://main.whoisxmlapi.com/) [Domain Availability API](https://domain-availability.whoisxmlapi.com/api). This project was part of a assigment at the [Ansbach University of Applied Sciences](https://www.hs-ansbach.de) and built in a team of 5.
 
 ## React Dev Tools Instruction
 
