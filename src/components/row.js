@@ -1,6 +1,6 @@
 import React from 'react';
-import zahnrad from "../img/zahnrad.svg";
-import muelleimer from "../img/muelleimer.svg";
+import zahnrad from "../assets/zahnrad.svg";
+import muelleimer from "../assets/muelleimer.svg";
 
 export const Row = (props) => (
    
