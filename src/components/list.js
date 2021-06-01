@@ -4,14 +4,11 @@ import Spinner from '../assets/Spinner-1s-200px.gif';
 
 import {Row} from './row';
 import {InputField} from './input-field';
-
-import {apiKey} from '../config.json';
-
 class List extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            apiKey: apiKey,
+            apiKey: process.env.REACT_APP_API_KEY,
             domainName: "",
             domains: [],
             loading: false,
