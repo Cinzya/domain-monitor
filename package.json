@@ -4,10 +4,10 @@
   "private": true,
   "dependencies": {
     "missing": "0.0.1",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-redux": "^7.1.3",
-    "react-scripts": "3.2.0",
+    "react-scripts": "4.0.3",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-promise": "^0.6.0",
